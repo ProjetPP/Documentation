@@ -32,8 +32,8 @@ A triple has three attributes:
 When one of those item (generally the object) is the expected answer,
 it is set as `null` in the triple.
 
-Example: for the question “What is the birth date of George Washington?”
-could 
+Example: a triple generated from the question “What is the birth date
+of George Washington?” could be:
 
 ```
 {"type": "triple", "subject": "George Washington",
