@@ -20,22 +20,22 @@ attributes are.
 
 The currently only existing type is:
 
-### triplet
+### triple
 
-A triplet has three attributes:
+A triple has three attributes:
 
-* `subject`: what the triplet refers to
+* `subject`: what the triple refers to
 * `predicate`: denotes the relationshift between the subject and the
   object
-* `object`: what property of the subject the triplet refers to
+* `object`: what property of the subject the triple refers to
 
 When one of those item (generally the object) is the expected answer,
-it is set as `null` in the triplet.
+it is set as `null` in the triple.
 
 Example: for the question “What is the birth date of George Washington?”
 could 
 
 ```
-{"type": "triplet", "subject": "George Washington",
+{"type": "triple", "subject": "George Washington",
 "predicate": "birth date", "object": null}
 ```
