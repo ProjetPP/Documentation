@@ -20,7 +20,7 @@ attributes are.
 
 The currently only existing type is:
 
-### `triplet`
+### triplet
 
 A triplet has three attributes:
 
