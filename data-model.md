@@ -12,14 +12,28 @@ tree made of instances of the following types:
 * Boolean
 * Null
 
+This document tries to use the same denominations as the
+[RDF](http://www.w3.org/RDF/) specifications.
+
 
 ## Sentence trees
 
-A sentence-tree is a tree whose nodes are objects and leafs are strings.
+A sentence-tree is a tree whose nodes and leafs are objects.
 Each node has an attribute “type”, which determines what the other
 attributes are.
 
-The currently only existing type is:
+The currently existing types are:
+
+### `resource`
+A `resource` is leaf of the tree. It has only one attribute, `value`
+that may be any kind of literal (like string, integer...).
+
+Example:
+
+```
+{"type": "resource", "value": "George Washington"}
+```
+
 
 ### `triple`
 
@@ -30,13 +44,16 @@ A triple has three attributes:
   object
 * `object`: what property of the subject the triple refers to
 
-When one of those item (generally the object) is the expected answer,
-it is set as `null` in the triple.
+All of those items are nodes or `null` if one of these (generally the object) is the expected answer.
 
 Example: a triple generated from the question “What is the birth date
 of George Washington?” could be:
 
 ```
-{"type": "triple", "subject": "George Washington",
-"predicate": "birth date", "object": null}
+{
+	"type": "triple",
+	"subject": {"type": "resource", "value": "George Washington"},
+	"predicate": {"type": "resource", "value": "birth date"},
+	"object": null
+}
 ```
