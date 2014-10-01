@@ -9,6 +9,7 @@ tree made of instances of the following types:
 * List
 * String
 * Number
+* Boolean
 * Null
 
 
@@ -20,7 +21,7 @@ attributes are.
 
 The currently only existing type is:
 
-### triple
+### `triple`
 
 A triple has three attributes:
 
