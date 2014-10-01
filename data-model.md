@@ -34,6 +34,15 @@ Example:
 {"type": "resource", "value": "George Washington"}
 ```
 
+### `missing`
+
+An unknown `resource`. Often use to tag the requested informations.
+
+Example (only possible instance):
+
+```
+{"type": "missing"}
+```
 
 ### `triple`
 
