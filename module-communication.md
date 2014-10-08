@@ -13,9 +13,11 @@ return a simplified tree, until the former gets a complete response
 (or any arbitrary limit the developers of the core decide; like
 an iteration limit).
 
-## Request
+## Backend
 
-The request is initiated by the server, always using POST methods (althrough
+### Request
+
+The request is initiated by the server, always using POST method (althrough
 semantically a GET method would be more appropriate, POST allows sending
 lots of data). In addition to mandatory HTTP fields used by the HTTP server
 to route the request to the module (Host, path, …), it contains the
@@ -34,7 +36,7 @@ A request object is a JSON object with the following attributes:
 * `tree`: the sentence tree of the request
 
 
-## Response
+### Response
 
 The module only answers with the mandatory HTTP fields (including the
 `Content-Type`) and a response object.
@@ -49,3 +51,13 @@ A response object is a JSON object with the following attributes:
 
 If the module doesn’t know at all how to handle the request at all, it must
 answer with the tree unchanged, and a `pertinence` of `0`.
+
+
+## Frontend
+
+The frontend (ie. HTTP requests made to the core) work like the backend
+(ie. requests to module).
+
+The only difference is the request object to the core can have a `sentence`
+attribute instead of the `tree` one, which is a string that will be
+parsed into a tree with a Natural Language Processing library.
