@@ -36,7 +36,8 @@ Example:
 
 ### `missing`
 
-An unknown `resource`. Often use to tag the requested informations.
+An unknown `resource`; also a leaf of the tree.
+Often use to tag the requested informations.
 
 Example (only possible instance):
 
@@ -46,14 +47,12 @@ Example (only possible instance):
 
 ### `triple`
 
-A triple has three attributes:
+A triple has three attributes, which are subtrees:
 
 * `subject`: what the triple refers to
 * `predicate`: denotes the relationshift between the subject and the
   object
 * `object`: what property of the subject the triple refers to
-
-All of those items are nodes or `null` if one of these (generally the object) is the expected answer.
 
 Example: a triple generated from the question “What is the birth date
 of George Washington?” could be:
@@ -63,6 +62,6 @@ of George Washington?” could be:
 	"type": "triple",
 	"subject": {"type": "resource", "value": "George Washington"},
 	"predicate": {"type": "resource", "value": "birth date"},
-	"object": null
+	"object": {"type": "missing"}
 }
 ```
