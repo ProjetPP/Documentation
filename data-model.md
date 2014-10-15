@@ -50,7 +50,7 @@ Example (only possible instance):
 A triple has three attributes, which are subtrees:
 
 * `subject`: what the triple refers to
-* `predicate`: denotes the relationshift between the subject and the
+* `predicate`: denotes the relationship between the subject and the
   object
 * `object`: what property of the subject the triple refers to
 
