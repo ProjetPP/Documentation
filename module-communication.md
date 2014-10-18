@@ -41,7 +41,7 @@ A request object is a JSON object with the following attributes:
 ### Response
 
 The module only answers with the mandatory HTTP fields (including the
-`Content-Type`) and a response object.
+`Content-Type`) and a (JSON) list of response object.
 
 A response object is a JSON object with the following attributes:
 
