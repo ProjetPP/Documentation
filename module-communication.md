@@ -51,8 +51,8 @@ A response object is a JSON object with the following attributes:
   Used by the core to chose between modules which answer to use.
 * `tree`: the sentence tree of the response
 
-If the module doesn’t know at all how to handle the request at all, it must
-answer with the tree unchanged, and a `pertinence` of `0`.
+If the module doesn’t know at all how to handle the request at all it must
+return an empty list `[]`.
 
 
 ## Frontend
