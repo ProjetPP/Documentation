@@ -36,7 +36,7 @@ A request object is a JSON object with the following attributes:
 * `tree` (dict): the sentence tree of the request
 * `id` (string, optional) a unique identifier used to track the request
   across modules
-* `trace` (list of string) the ordered list of module names where the request is passed. The first element is the older.
+* `trace` (list of strings) the ordered list of module names where the request is passed. The first element is the older.
 
 
 ### Response
@@ -51,7 +51,7 @@ A response object is a JSON object with the following attributes:
   in evaluating the request. A float from 0 to 1.
   Used by the core to chose between modules which answer to use.
 * `tree`: the sentence tree of the response.
-* `trace`  (list of string) the ordered list of module names where the request is passed. The first element is the older.
+* `trace`  (list of strings) the ordered list of module names where the request is passed. The first element is the older.
 
 If the module doesn’t know at all how to handle the request at all it must
 return an empty list `[]`.
