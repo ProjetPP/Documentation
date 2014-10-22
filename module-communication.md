@@ -31,6 +31,7 @@ an iteration limit).
 {"module": "<name of the module>", "tree": {<answer tree>},
  "relevancy": <relevancy of the answer>,
  "accuracy": <fiability of the answer>}
+```
 
 ## Backend
 
