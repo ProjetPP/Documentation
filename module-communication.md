@@ -53,10 +53,10 @@ and also the request object.
 A request object is a JSON object with the following attributes:
 
 * `language` (string), with an ISO 639-1 code as value
-* `tree` (dict): the sentence tree of the request
+* `tree` (object): the sentence tree of the request
 * `id` (string, optional) a unique identifier used to track the request
   across modules
-* `trace` (list of dicts) a history of what modules a request has been
+* `trace` (list of objects) a history of what modules a request has been
   through and what its different trees were.
 
 
@@ -72,7 +72,7 @@ A response object is a JSON object with the following attributes:
 * `accuracy`, see vocabulary
 * `relevancy, see vocabulary
 * `tree`: the sentence tree of the response.
-* `trace` (list of dicts): the request's trace, extended with any call
+* `trace` (list of objects): the request's trace, extended with any call
   made to other modules
 
 If the module doesn’t know at all how to handle the request at all it must
