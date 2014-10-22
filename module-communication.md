@@ -15,9 +15,9 @@ an iteration limit).
 
 ## Vocabulary
 
-### Fiability and relevancy
+### Accuracy and relevancy
 
-* fiability is a self-rating of how much the module may have correctly
+* accuracy is a self-rating of how much the module may have correctly
   understood (ie. not misinterpreted) the request/question.
   A float from 0 to 1.
 * relevancy is a self-rating of how much the tree has been improved
@@ -30,7 +30,7 @@ an iteration limit).
 ```
 {"module": "<name of the module>", "tree": {<answer tree>},
  "relevancy": <relevancy of the answer>,
- "fiability": <fiability of the answer>}
+ "accuracy": <fiability of the answer>}
 
 ## Backend
 
@@ -68,7 +68,7 @@ The module only answers with the mandatory HTTP fields (including the
 A response object is a JSON object with the following attributes:
 
 * `language`, with an ISO 639-1 code as value
-* `fiability`, see vocabulary
+* `accuracy`, see vocabulary
 * `relevancy, see vocabulary
 * `tree`: the sentence tree of the response.
 * `trace` (list of dicts): the request's trace, extended with any call
