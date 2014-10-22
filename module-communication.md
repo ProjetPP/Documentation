@@ -15,7 +15,7 @@ an iteration limit).
 
 ## Vocabulary
 
-### Accuracy and relevancy
+### Measures
 
 * accuracy is a self-rating of how much the module may have correctly
   understood (ie. not misinterpreted) the request/question.
@@ -24,6 +24,8 @@ an iteration limit).
   (ie. made its way from a question to an useful answer).
   A float, obviously greater that 1 (otherwise the module would better
   return nothing).
+* measures an object, whose attributes are `accuracy` and `relevancy`,
+  with their appropriate key.
 
 ### Format of a `trace` item
 
@@ -69,8 +71,7 @@ The module only answers with the mandatory HTTP fields (including the
 A response object is a JSON object with the following attributes:
 
 * `language`, with an ISO 639-1 code as value
-* `accuracy`, see vocabulary
-* `relevancy, see vocabulary
+* measures, see vocabulary
 * `tree`: the sentence tree of the response.
 * `trace` (list of objects): the request's trace, extended with any call
   made to other modules
