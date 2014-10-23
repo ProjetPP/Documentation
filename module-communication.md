@@ -22,8 +22,8 @@ an iteration limit).
   A float from 0 to 1.
 * relevancy is a self-rating of how much the tree has been improved
   (ie. made its way from a question to an useful answer).
-  A float, obviously greater that 1 (otherwise the module would better
-  return nothing).
+  A positive float (not necessarily greater that 1; another module
+  might use it to provide a much better answer).
 * measures an object, whose attributes are `accuracy` and `relevancy`,
   with their appropriate key.
 
