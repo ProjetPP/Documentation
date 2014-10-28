@@ -13,6 +13,28 @@ return a simplified tree, until the former gets a complete response
 (or any arbitrary limit the developers of the core decide; like
 an iteration limit).
 
+## Vocabulary
+
+### Measures
+
+* accuracy is a self-rating of how much the module may have correctly
+  understood (ie. not misinterpreted) the request/question.
+  A float from 0 to 1.
+* relevance is a self-rating of how much the tree has been improved
+  (ie. made its way from a question to an useful answer).
+  A positive float (not necessarily greater that 1; another module
+  might use it to provide a much better answer).
+* measures an object, whose attributes are `accuracy` and `relevance`,
+  with their appropriate key.
+
+### Format of a `trace` item
+
+```
+{"module": "<name of the module>", "tree": {<answer tree>},
+ "measures": {"relevance": <relevance of the answer>,
+              "accuracy": <fiability of the answer>}}
+```
+
 ## Backend
 
 ### Request
@@ -33,10 +55,12 @@ and also the request object.
 A request object is a JSON object with the following attributes:
 
 * `language` (string), with an ISO 639-1 code as value
-* `tree` (dict): the sentence tree of the request
+* `tree` (object): the sentence tree of the request
 * `id` (string, optional) a unique identifier used to track the request
   across modules
-* `trace` (list of strings) the ordered list of module names where the request is passed. The first element is the older.
+* `trace` (list of objects) a history of what modules a request has been
+  through and what its different trees were.
+
 
 
 ### Response
@@ -47,11 +71,10 @@ The module only answers with the mandatory HTTP fields (including the
 A response object is a JSON object with the following attributes:
 
 * `language`, with an ISO 639-1 code as value
-* `pertinence`, a self-rating of how much the module has been successful
-  in evaluating the request. A float from 0 to 1.
-  Used by the core to chose between modules which answer to use.
+* measures, see vocabulary
 * `tree`: the sentence tree of the response.
-* `trace`  (list of strings) the ordered list of module names where the request is passed. The first element is the older.
+* `trace` (list of objects): the request's trace, extended with any call
+  made to other modules
 
 If the module doesn’t know at all how to handle the request at all it must
 return an empty list `[]`.
