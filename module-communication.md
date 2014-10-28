@@ -71,7 +71,7 @@ The module only answers with the mandatory HTTP fields (including the
 A response object is a JSON object with the following attributes:
 
 * `language`, with an ISO 639-1 code as value
-* measures, see vocabulary
+* `measures`, see vocabulary
 * `tree`: the sentence tree of the response.
 * `trace` (list of objects): the request's trace, extended with any call
   made to other modules
