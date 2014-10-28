@@ -20,18 +20,18 @@ an iteration limit).
 * accuracy is a self-rating of how much the module may have correctly
   understood (ie. not misinterpreted) the request/question.
   A float from 0 to 1.
-* relevancy is a self-rating of how much the tree has been improved
+* relevance is a self-rating of how much the tree has been improved
   (ie. made its way from a question to an useful answer).
   A positive float (not necessarily greater that 1; another module
   might use it to provide a much better answer).
-* measures an object, whose attributes are `accuracy` and `relevancy`,
+* measures an object, whose attributes are `accuracy` and `relevance`,
   with their appropriate key.
 
 ### Format of a `trace` item
 
 ```
 {"module": "<name of the module>", "tree": {<answer tree>},
- "measures": {"relevancy": <relevancy of the answer>,
+ "measures": {"relevance": <relevance of the answer>,
               "accuracy": <fiability of the answer>}}
 ```
 
