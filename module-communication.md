@@ -55,6 +55,7 @@ and also the request object.
 A request object is a JSON object with the following attributes:
 
 * `language` (string), with an ISO 639-1 code as value
+* `measures`, see vocabulary
 * `tree` (object): the sentence tree of the request
 * `id` (string, optional) a unique identifier used to track the request
   across modules
