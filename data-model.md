@@ -65,3 +65,13 @@ of George Washington?” could be:
 	"object": {"type": "missing"}
 }
 ```
+
+### `sentence`
+
+A question in natural language like "Who is George Washington?".
+
+Example:
+
+```
+{"type": "sentence", "value": "Who is George Washington?"}
+```
