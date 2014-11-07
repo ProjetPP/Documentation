@@ -19,20 +19,51 @@ This document tries to use the same denominations as the
 ## Sentence trees
 
 A sentence-tree is a tree whose nodes and leafs are objects.
-Each node has an attribute “type”, which determines what the other
+Each node has an attribute `type`, which determines what the other
 attributes are.
 
 The currently existing types are:
 
 ### `resource`
-A `resource` is leaf of the tree. It has only one attribute, `value`
-that may be any kind of literal (like string, integer...).
+A `resource` is leaf of the tree. It has two primary attributes:
+* `value` that is a string representation of the resource (for interoperability).
+* `value-type` (optional) that adds information about the type of the entity. Each module can use its own types or use basic types specified just after. Default: `string`.
+* 
+There may be additional attributes depending on the `value-type`.
 
-Example:
-
+Simple example:
 ```
 {"type": "resource", "value": "George Washington"}
 ```
+
+Example with `type`.
+```
+{"type": "resource", "value": "true", "value-type":"boolean"}
+```
+
+Example with `type` and additional attributes.
+```
+{"type": "resource", "value": "1111-11-11", "value-type":"time", "calendar":"julian"}
+```
+
+#### Basic value types
+They are inspired by [XML Schema](http://www.w3.org/TR/xmlschema-2/#built-in-datatypes) ones.
+
+##### `string`
+A simple string. `value` may be any string.
+
+Additional attributes:
+* `language` (optional) the language code in which the `value` is written. Should Follow [RFC 4646](http://tools.ietf.org/html/rfc4646).
+
+##### `boolean`
+A bollean. `value` should be in {"true", "false", "1", "0"}.
+
+##### `time`
+A point in time. `value` should match [ISO 8601](http://www.iso.org/iso/fr/home/standards/iso8601.htm).
+
+Addtional attributes:
+* `calendar` (optional) the calendar of the date. Default: `gregorian`.
+
 
 ### `missing`
 
