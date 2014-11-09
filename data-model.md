@@ -66,7 +66,7 @@ Addtional attributes:
 
 #### `math-latex`
 
-A mathematical formula. `value` is a string  which represents a mathematical formula write in LaTeX without the `$ $`. For instance:
+A mathematical formula. `value` is a string  which represents a mathematical formula written in LaTeX without the `$ $`. For instance:
 
 ```
 {"type": "resource", "value": "\sqrt[\pi]{42}", "value-type":"math-latex"}
