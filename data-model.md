@@ -28,8 +28,7 @@ The currently existing types are:
 A `resource` is leaf of the tree. It has two primary attributes:
 * `value` that is a string representation of the resource (for interoperability).
 * `value-type` (optional) that adds information about the type of the entity. Each module can use its own types or use basic types specified just after. Default: `string`.
-* 
-There may be additional attributes depending on the `value-type`.
+* There may be additional attributes depending on the `value-type`.
 
 Simple example:
 ```
@@ -75,12 +74,13 @@ A mathematical formula. `value` is a string  which represents a mathematical for
 ### `missing`
 
 An unknown `resource`; also a leaf of the tree.
-Often use to tag the requested informations.
+Often used to tag the requested informations. It has one possible attribute:
+* `value-type` (optional) that adds information about the type of the entity.
 
-Example (only possible instance):
+Example:
 
 ```
-{"type": "missing"}
+{"type": "missing", "value-type":"book"}
 ```
 
 ### `triple`
