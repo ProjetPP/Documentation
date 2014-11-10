@@ -64,7 +64,7 @@ A point in time. `value` should match [ISO 8601](http://www.iso.org/iso/fr/home/
 Addtional attributes:
 * `calendar` (optional) the calendar of the date. Default: `gregorian`.
 
-#### `math-latex`
+##### `math-latex`
 
 A mathematical formula. `value` is a string  which represents a mathematical formula written in LaTeX without the `$ $`. For instance:
 
