@@ -28,8 +28,7 @@ The currently existing types are:
 A `resource` is leaf of the tree. It has two primary attributes:
 * `value` that is a string representation of the resource (for interoperability).
 * `value-type` (optional) that adds information about the type of the entity. Each module can use its own types or use basic types specified just after. Default: `string`.
-* 
-There may be additional attributes depending on the `value-type`.
+* There may be additional attributes depending on the `value-type`.
 
 Simple example:
 ```
@@ -56,7 +55,7 @@ Additional attributes:
 * `language` (optional) the language code in which the `value` is written. Should Follow [RFC 4646](http://tools.ietf.org/html/rfc4646).
 
 ##### `boolean`
-A bollean. `value` should be in {"true", "false", "1", "0"}.
+A boolean. `value` should be in {"true", "false", "1", "0"}.
 
 ##### `time`
 A point in time. `value` should match [ISO 8601](http://www.iso.org/iso/fr/home/standards/iso8601.htm).
@@ -64,7 +63,7 @@ A point in time. `value` should match [ISO 8601](http://www.iso.org/iso/fr/home/
 Addtional attributes:
 * `calendar` (optional) the calendar of the date. Default: `gregorian`.
 
-#### `math-latex`
+##### `math-latex`
 
 A mathematical formula. `value` is a string  which represents a mathematical formula written in LaTeX without the `$ $`. For instance:
 
@@ -75,12 +74,13 @@ A mathematical formula. `value` is a string  which represents a mathematical for
 ### `missing`
 
 An unknown `resource`; also a leaf of the tree.
-Often use to tag the requested informations.
+Often use to tag the requested informations. It has one possible attribute:
+* `value-type` (optional) that adds information about the type of the entity.
 
-Example (only possible instance):
+Example:
 
 ```
-{"type": "missing"}
+{"type": "missing", "value-type":"book"}
 ```
 
 ### `triple`
@@ -103,6 +103,37 @@ of George Washington?” could be:
 	"object": {"type": "missing"}
 }
 ```
+
+### `connector`
+
+A connector denotes a particular relation between some entities.
+
+It has two attributes:
+* `value`: the name of the connector. Each module can use its own value or use one of the basic values specified just after.
+* `items`: the list of the subtrees [item1, item2, …] linked by the connector.
+
+Example:
+```
+{
+	"type": "connector",
+	"value": "or",
+	"items": [{"type": "resource", "value": "George Washington"}, {"type": "resource", "value": "Thomas Jefferson"}]
+}
+```
+
+#### Basic connector types
+
+##### `and`
+
+Denotes the intersection of all the entities in `items`.
+
+##### `or`
+
+Denotes the union of all the entities in `items`.
+
+##### `first`
+
+Denotes the first element of the first entity in `items`.
 
 ### `sentence`
 
