@@ -116,18 +116,18 @@ Example:
 ```
 {
 	"type": "connector",
-	"value": "or",
+	"value": "union",
 	"items": [{"type": "resource", "value": "George Washington"}, {"type": "resource", "value": "Thomas Jefferson"}]
 }
 ```
 
 #### Basic connector types
 
-##### `and`
+##### `intersection`
 
 Denotes the intersection of all the entities in `items`.
 
-##### `or`
+##### `union`
 
 Denotes the union of all the entities in `items`.
 
