@@ -56,7 +56,7 @@ Additional attributes:
 * `language` (optional) the language code in which the `value` is written. Should Follow [RFC 4646](http://tools.ietf.org/html/rfc4646).
 
 ##### `boolean`
-A bollean. `value` should be in {"true", "false", "1", "0"}.
+A boolean. `value` should be in {"true", "false", "1", "0"}.
 
 ##### `time`
 A point in time. `value` should match [ISO 8601](http://www.iso.org/iso/fr/home/standards/iso8601.htm).
