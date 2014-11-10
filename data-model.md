@@ -74,7 +74,7 @@ A mathematical formula. `value` is a string  which represents a mathematical for
 ### `missing`
 
 An unknown `resource`; also a leaf of the tree.
-Often use to tag the requested informations. It has one possible attribute:
+Often used to tag the requested informations. It has one possible attribute:
 * `value-type` (optional) that adds information about the type of the entity.
 
 Example:
