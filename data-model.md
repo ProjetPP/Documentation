@@ -104,37 +104,6 @@ of George Washington?” could be:
 }
 ```
 
-### `connector`
-
-A connector denotes a particular relation between some entities.
-
-It has two attributes:
-* `value`: the name of the connector. Each module can use its own value or use one of the basic values specified just after.
-* `items`: the list of the subtrees [item1, item2, …] linked by the connector.
-
-Example:
-```
-{
-	"type": "connector",
-	"value": "or",
-	"items": [{"type": "resource", "value": "George Washington"}, {"type": "resource", "value": "Thomas Jefferson"}]
-}
-```
-
-#### Basic connector types
-
-##### `and`
-
-Denotes the intersection of all the entities in `items`.
-
-##### `or`
-
-Denotes the union of all the entities in `items`.
-
-##### `first`
-
-Denotes the first element of the first entity in `items`.
-
 ### `sentence`
 
 A question in natural language like "Who is George Washington?".
