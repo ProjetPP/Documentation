@@ -104,6 +104,17 @@ of George Washington?” could be:
 }
 ```
 
+### `list`
+
+A list contains multiple elements.
+
+```
+{
+    "type": "list",
+    "items": [item1, item2, …]
+}
+```
+
 ### `sentence`
 
 A question in natural language like "Who is George Washington?".
