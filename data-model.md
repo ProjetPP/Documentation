@@ -59,10 +59,10 @@ The *intersection* is an operator of *list⁺ → list* that returns the interse
 There are some operators that manipulate *bool*:
 
 ##### *and*
-The *and* is an operator of *bool⁺ → bool* that returns if the conjonction of the parameters is true. Its notation is the infix `∧`.
+The *and* is an operator of *bool⁺ → bool* that returns true if the conjonction of the parameters is true. Its notation is the infix `∧`.
 
 ##### *or*
-The *or* is an operator of *bool⁺ → bool* that returns if the disjonction of the parameters is true. Its notation is the infix `∨`.
+The *or* is an operator of *bool⁺ → bool* that returns true if the disjonction of the parameters is true. Its notation is the infix `∨`.
 
 ##### *not*
 The *not* is an operator of *bool → bool* that returns the negation of the parameter. Its notation is the prefix `¬`.
@@ -70,7 +70,7 @@ The *not* is an operator of *bool → bool* that returns the negation of the par
 #### *exists*
 The *exists* is an operator of *list → bool* that returns *true* if, and only if, there exits a *resource* in the *list* e.g. the *list* is not empty. Its notation is the prefix `∃`.
 
-Example: The question "Is there a pink bird" may be formalized as `∃ (?, instance of, bird) ∩ (?, color, black)`.
+Example: The question "Is there a pink bird" may be formalized as `∃ (?, instance of, bird) ∩ (?, color, pink)`.
 
 
 ## Extensions to the data model
@@ -89,7 +89,7 @@ We provide a canonical representation of the data model in [JSON](http://www.jso
 
 Each node of the query tree is encoded as a JSON object with an attribute `type` that determine the kind of node and the other attributes.
 
-The `type` attributes as the same value as the name of the node type in the data model.
+The `type` attributes has the same value as the name of the node type in the data model.
 
 Here are the serialization for the possible nodes:
 
@@ -177,7 +177,7 @@ Example: the serialization of the triple `(George Washington, birth date, ?)` is
 ```
 
 ### *sentence*
-As only one attribute, `value` that contains the sentence.
+Has only one attribute, `value` that contains the sentence.
 
 Example: The serialization of `"Who is George Washington?"` is:
 ```
