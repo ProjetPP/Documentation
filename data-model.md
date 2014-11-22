@@ -50,19 +50,19 @@ Example: a triple generated from the question “What is the birth date of Georg
 There are some operators that manipulate lists:
 
 ##### *union*
-The *union* is an operator of *list+ → list* that returns the union of the lists. Its notation is the infix `∪` like `l1 ∪ l2 ∪ l3`.
+The *union* is an operator of *list⁺ → list* that returns the union of the lists. Its notation is the infix `∪` like `l1 ∪ l2 ∪ l3`.
 
 ##### *intersection*
-The *intersection* is an operator of *list+ → list* that returns the intersection of the lists. Its notation is the infix `∩`.
+The *intersection* is an operator of *list⁺ → list* that returns the intersection of the lists. Its notation is the infix `∩`.
 
 #### *boolean* operators
 There are some operators that manipulate *bool*:
 
 ##### *and*
-The *and* is an operator of *bool\* → bool* that returns if the conjonction of the parameters is true. Its notation is the infix `∧`.
+The *and* is an operator of *bool⋆ → bool* that returns if the conjonction of the parameters is true. Its notation is the infix `∧`.
 
 ##### *or*
-The *or* is an operator of *bool\* → bool* that returns if the disjonction of the parameters is true. Its notation is the infix `∨`.
+The *or* is an operator of *bool⋆ → bool* that returns if the disjonction of the parameters is true. Its notation is the infix `∨`.
 
 ##### *not*
 The *not* is an operator of *bool → bool* that returns the negation of the parameter. Its notation is the prefix `¬`.
