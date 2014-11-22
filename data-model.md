@@ -7,10 +7,10 @@ It is divided in two parts, the data model with mathematical-like notations and 
 This document tries to use the same denominations as the [RDF](http://www.w3.org/RDF/) specifications.
 
 ## Data model
-The PPP queries/questions are trees with as leaf *values* and as node *operators*.
+The PPP queries/questions are trees, where leafs are *values* and nodes are *operators*.
 
 ### *values*
-There are some kind of values:
+We describe here the diferent kind of possible *valuses.
 
 #### *resource*
 A *resource* represents something in the universe. It may be a person denoted by its name, a date... Its notation just a string like `Douglas Adams`, `true` or `2014`.
