@@ -10,7 +10,7 @@ This document tries to use the same denominations as the [RDF](http://www.w3.org
 The PPP queries/questions are trees, where leafs are *values* and nodes are *operators*.
 
 ### *values*
-We describe here the diferent kind of possible *valuses.
+We describe here the diferent kind of possible *values*.
 
 #### *resource*
 A *resource* represents some basic object. It may be a person denoted by its name, a date, a location, etc. Its notation is just a string like `Douglas Adams`, `Peru` or `2014`.
