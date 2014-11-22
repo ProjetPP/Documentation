@@ -1,41 +1,111 @@
 # Data model
 
-## Introduction
-
-All normalized structures of the PPP are JSON-serializable, ie. they are
-tree made of instances of the following types:
-
-* Object (aka. dictionnary)
-* List
-* String
-* Number
-* Boolean
-* Null
-
-This document tries to use the same denominations as the
-[RDF](http://www.w3.org/RDF/) specifications.
+This living document specifies the intermediate format used between modules in order to represent questions.
+It is divided in two parts, the data model with mathematical-like notations and the canonical serialization in JSON.
 
 
-## Sentence trees
+This document tries to use the same denominations as the [RDF](http://www.w3.org/RDF/) specifications.
 
-A sentence-tree is a tree whose nodes and leafs are objects.
-Each node has an attribute `type`, which determines what the other
-attributes are.
+## Data model
+The PPP queries/questions are trees with as leaf *values* and as node *operators*.
 
-The currently existing types are:
+### *values*
+There are some kind of values:
 
-### `resource`
-A `resource` is leaf of the tree. It has two primary attributes:
+#### *resource*
+A *resource* represents something in the universe. It may be a person denoted by its name, a date... Its notation just a string like `Douglas Adams`, `true` or `2014`.
+
+#### *list*
+A *list* is an ordered collection of *resources*. Its notation is a comma separated list between brackets like `[Foo, Bar]`. We also assimilate the list with only one element with the element itself. So `[Foo]` may be also written `Foo`.
+
+#### *bool*
+*bool* is the set of the two *resources* *true* and *false* representing the two booleans. They are written `true` and `false`.
+
+#### *missing*
+A *missing* represents what is the target of the query. Its notation is `?`.
+
+
+### *operators*
+#### *triples*
+A *triple*, as in RDF, a structure composed of three elements:
+* the *subject*, what the triple refers to
+* the *predicate*, that denotes the relationship between the subject and the object
+* the *object*, what property of the subject the triple refers to
+
+*Triples* notation is `(subject, property, object)`.
+
+We use triple formalism with some operators:
+
+##### *full triple*
+*Full triple* is a function of *list × list × list → bool* written `(la, lb, lc)` that returns `true`, if and only if, for all `a` ∈ `la`, `b` ∈ `lb` and `c` ∈ `lc`, `(a,b,c)` is true.
+
+##### *triples with hole*
+The aim of *triples with hole* is to get information. They are functions of *list × list → list*. We define two of them:
+* *missing object triple* written `(la, lb, ?)` that returns the *list* of *resources* `c` such that there exists `a` ∈ `la` and `b` ∈ `lb` with `(a,b,c)` true.
+* *missing subject triple* written `(?, lb, lc)` that returns the *list* of *resources* `a` such that there exists `b` ∈ `lb` and `c` ∈ `lc` with `(a,b,c)` true.
+
+Example: a triple generated from the question “What is the birth date of George Washington?” could be: `(George Washington, birth date, ?)`.
+
+#### *list* operators
+There are some operators that manipulate lists:
+
+##### *union*
+The *union* is an operator of *list+ → list* that returns the union of the lists. Its notation is the infix `∪` like `l1 ∪ l2 ∪ l3`.
+
+##### *intersection*
+The *intersection* is an operator of *list+ → list* that returns the intersection of the lists. Its notation is the infix `∩`.
+
+#### *boolean* operators
+There are some operators that manipulate *bool*:
+
+##### *and*
+The *and* is an operator of *bool\* → bool* that returns if the conjonction of the parameters is true. Its notation is the infix `∧`.
+
+##### *or*
+The *or* is an operator of *bool\* → bool* that returns if the disjonction of the parameters is true. Its notation is the infix `∨`.
+
+##### *not*
+The *not* is an operator of *bool → bool* that returns the negation of the parameter. Its notation is the prefix `¬`.
+
+#### *exists*
+The *exists* is an operator of *list → bool* that returns *true* if, and only if, there exits a *resource* in the *list* e.g. the *list* is not empty. Its notation is the prefix `∃`.
+
+Example: The question "Is there a pink bird" may be formalized as `∃ (?, instance of, bird) ∩ (?, color, black)`.
+
+
+## Extensions to the data model
+
+### *sentence* *value*
+A *sentence* represents a full question encoded as a string. Its notation is a string between quotation marks like `"Who are you"`. It may be only the root of the question tree.
+
+### Typing
+It is possible to add type informations to *triple with hole* in order to restrict the range of result.
+
+Example: If we choose as range "time" the triple `(George Washington, bith, ?)` can only return time points.
+
+
+## JSON serialization
+We provide a canonical representation of the data model in [JSON](http://www.json.org).
+
+Each node of the query tree is encoded as a JSON object with an attribute `type` that determine the kind of node and the other attributes.
+
+The `type` attributes as the same value as the name of the node type in the data model.
+
+Here are the serialization for the possible nodes:
+
+### *resource*
+The `resource` serialization has two primary attributes:
 * `value` that is a string representation of the resource (for interoperability).
 * `value-type` (optional) that adds information about the type of the entity. Each module can use its own types or use basic types specified just after. Default: `string`.
-* There may be additional attributes depending on the `value-type`.
+
+There may be additional attributes depending on the `value-type`.
 
 Simple example:
 ```
 {"type": "resource", "value": "George Washington"}
 ```
 
-Example with `type`.
+Example with `type` for the *bool* *true*:
 ```
 {"type": "resource", "value": "true", "value-type":"boolean"}
 ```
@@ -60,41 +130,43 @@ A boolean. `value` should be in {"true", "false", "1", "0"}.
 ##### `time`
 A point in time. `value` should match [ISO 8601](http://www.iso.org/iso/fr/home/standards/iso8601.htm).
 
-Addtional attributes:
+Additional attributes:
 * `calendar` (optional) the calendar of the date. Default: `gregorian`.
 
 ##### `math-latex`
-
 A mathematical formula. `value` is a string  which represents a mathematical formula written in LaTeX without the `$ $`. For instance:
-
 ```
 {"type": "resource", "value": "\sqrt[\pi]{42}", "value-type":"math-latex"}
 ```
 
-### `missing`
+### *list*
+It as only one attribute, `list` that is an array that stores the serialization of *list* elements.
 
-An unknown `resource`; also a leaf of the tree.
-Often used to tag the requested informations. It has one possible attribute:
-* `range` (optional) that adds information in which range the values that may replace this missing node should be. It may be a literal type like `time` or state that the resource should be instance of a specific class like `book`.
+Example: The serialization of `[George Washington, Theodore Roosevelt]' is
+```
+{"type": "list", "list":[{"type": "resource", "value": "George Washington"}, {"type": "resource", "value": "Theodore Roosevelt"}]}
+```
+
+The *list* with only one element may be also serialialized as the serialization of the element.
+
+Example: The serialization of `[George Washington]' may be
+```
+{"type": "resource", "value": "George Washington"}
+```
+
+### *missing*
+It has one possible attribute:
+* `range` (optional) used in order to contains type informations that should be used in the triple the *missing* node is in.
 
 Example:
-
 ```
 {"type": "missing", "range":"book"}
 ```
 
-### `triple`
+### *triple*
+The different kind of *triples* use all the same serialization with their three members as attributes, `subject`, `predicate` and `object`.
 
-A triple has three attributes, which are subtrees:
-
-* `subject`: what the triple refers to
-* `predicate`: denotes the relationship between the subject and the
-  object
-* `object`: what property of the subject the triple refers to
-
-Example: a triple generated from the question “What is the birth date
-of George Washington?” could be:
-
+Example: the serialization of the triple `(George Washington, birth date, ?)` is:
 ```
 {
 	"type": "triple",
@@ -104,12 +176,10 @@ of George Washington?” could be:
 }
 ```
 
-### `sentence`
+### *sentence*
+As only one attribute, `value` that contains the sentence.
 
-A question in natural language like "Who is George Washington?".
-
-Example:
-
+Example: The serialization of `"Who is George Washington?"` is:
 ```
 {"type": "sentence", "value": "Who is George Washington?"}
 ```
