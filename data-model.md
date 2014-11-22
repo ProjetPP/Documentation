@@ -59,10 +59,10 @@ The *intersection* is an operator of *list⁺ → list* that returns the interse
 There are some operators that manipulate *bool*:
 
 ##### *and*
-The *and* is an operator of *bool⋆ → bool* that returns if the conjonction of the parameters is true. Its notation is the infix `∧`.
+The *and* is an operator of *bool⁺ → bool* that returns if the conjonction of the parameters is true. Its notation is the infix `∧`.
 
 ##### *or*
-The *or* is an operator of *bool⋆ → bool* that returns if the disjonction of the parameters is true. Its notation is the infix `∨`.
+The *or* is an operator of *bool⁺ → bool* that returns if the disjonction of the parameters is true. Its notation is the infix `∨`.
 
 ##### *not*
 The *not* is an operator of *bool → bool* that returns the negation of the parameter. Its notation is the prefix `¬`.
