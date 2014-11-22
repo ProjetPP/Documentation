@@ -27,12 +27,12 @@ A *missing* represents what is the target of the query. Its notation is `?`.
 
 ### *operators*
 #### *triples*
-A *triple*, as in RDF, a structure composed of three elements:
+A *triple*, as in RDF, is a structure composed of three elements:
 * the *subject*, what the triple refers to
 * the *predicate*, that denotes the relationship between the subject and the object
 * the *object*, what property of the subject the triple refers to
 
-*Triples* notation is `(subject, property, object)`.
+*Triples* notation is `(subject, predicate, object)`, or equivalently `predicate(subject,object)`.
 
 We use triple formalism with some operators:
 
