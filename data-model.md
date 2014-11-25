@@ -56,6 +56,21 @@ The *union* is an operator of *list⁺ → list* that returns the union of the l
 ##### *intersection*
 The *intersection* is an operator of *list⁺ → list* that returns the intersection of the lists. Its notation is the infix `∩`.
 
+##### *sort*
+*Sort* is an operator of *list × resource → list*, written `sort(l, a)`, which sorts the *list* `l` with increasing order according to the predicate `a`.
+
+Example: `sort([Theodore Roosevelt, George Washington], birth date)` returns `[George Washington, Theodore Roosevelt]`.
+
+##### *first*
+*First* is an operator of *list → resource*, written `first(l)`, that returns the first element of the list.
+
+Example: `first([George Washington, Theodore Roosevelt])` returns `George Washington`.
+
+##### *last*
+*Last* is an operator of *list → resource*, written `last(l)`, that returns the last element of the list.
+
+Example: `last([George Washington, Theodore Roosevelt])` returns `Theodore Roosevelt`.
+
 #### *boolean* operators
 There are some operators that manipulate *bool*:
 
@@ -179,7 +194,7 @@ Example: the serialization of the triple `(George Washington, birth date, ?)` is
 }
 ```
 
-### *union*, *intersection*, *and* and *or*
+### *union*, *intersection*, *and*, *or*, *first* and *last*
 There is only one parameter, *list* that is an array containing the operator parameters.
 
 Example: the serialization of the query `[George Washington] ∪ [Theodore Roosevelt]` is:
@@ -187,6 +202,19 @@ Example: the serialization of the query `[George Washington] ∪ [Theodore Roose
 {
 	"type": "union",
 	"list": [{"type": "resource", "value": "George Washington"}, {"type": "resource", "value": "Theodore Roosevelt"}]
+}
+```
+
+### *sort*
+There are two parameters:
+* `list` the input *list*.
+* `predicate` the predicate with which the *list* is sorted.
+
+Example: the serialization of the query `sort([Theodore Roosevelt, George Washington], birth date)` is:
+```
+{
+	"type": "sort",
+	"list": [{"type": "resource", "value": "Theodore Roosevelt"}, {"type": "resource", "value": "George Washington"}]
 }
 ```
 
