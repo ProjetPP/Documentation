@@ -80,10 +80,11 @@ Example: The question "Is there a pink bird" may be formalized as `∃ (?, insta
 A *sentence* represents a full question encoded as a string. Its notation is a string between quotation marks like `"Who are you"`. It may be only the root of the question tree.
 
 ### Typing
-It is possible to add type informations to *triple with hole* in order to restrict the range of result.
+It is possible to add type information to *resource* and *missing* nodes.
 
-Example: If we choose as range "time" the triple `(George Washington, bith, ?)` can only return time points.
+Example: If we choose as range "time" to the *missing* node `?` in the triple `(George Washington, birth, ?)` this *triple with hole* can only return time points.
 
+Example: If we choose as range "musician" for the *resource* node `Michele Smith` we state that this *resource* is the musician Michele Smith and not the author that has the same name.
 
 ## JSON serialization
 We provide a canonical representation of the data model in [JSON](http://www.json.org).
@@ -95,9 +96,10 @@ The `type` attributes has the same value as the name of the node type in the dat
 Here are the serialization for the possible nodes:
 
 ### *resource*
-The `resource` serialization has two primary attributes:
+The `resource` serialization has three primary attributes:
 * `value` that is a string representation of the resource (for interoperability).
 * `value-type` (optional) that adds information about the type of the entity. Each module can use its own types or use basic types specified just after. Default: `string`.
+* `range` (optional) used in order to contains type informations as specified by the typing extension of the data model.
 
 There may be additional attributes depending on the `value-type`.
 
@@ -157,7 +159,7 @@ Example: The serialization of `[George Washington]' may be
 
 ### *missing*
 It has one possible attribute:
-* `range` (optional) used in order to contains type informations that should be used in the triple the *missing* node is in.
+* `range` (optional) used in order to contains type informations as specified by the typing extension of the data model.
 
 Example:
 ```
