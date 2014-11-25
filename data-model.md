@@ -214,7 +214,8 @@ Example: the serialization of the query `sort([Theodore Roosevelt, George Washin
 ```
 {
 	"type": "sort",
-	"list": [{"type": "resource", "value": "Theodore Roosevelt"}, {"type": "resource", "value": "George Washington"}]
+	"list": [{"type": "resource", "value": "Theodore Roosevelt"}, {"type": "resource", "value": "George Washington"}],
+	"predicate": {"type": "resource", "value": "birth date"}
 }
 ```
 
