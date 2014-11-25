@@ -43,6 +43,7 @@ We use triple formalism with some operators:
 The aim of *triples with hole* is to get information. They are functions of *list × list → list*. We define two of them:
 * *missing object triple* written `(la, lb, ?)` that returns the *list* of *resources* `c` such that there exists `a` ∈ `la` and `b` ∈ `lb` with `(a,b,c)` true.
 * *missing subject triple* written `(?, lb, lc)` that returns the *list* of *resources* `a` such that there exists `b` ∈ `lb` and `c` ∈ `lc` with `(a,b,c)` true.
+* *missing predicate triple* written `(la, ?, lc)` that returns the *list* of *predicates* `b` such that there exists `a` ∈ `la` and `c` ∈ `lc` with `(a,b,c)` true.
 
 Example: a triple generated from the question “What is the birth date of George Washington?” could be: `(George Washington, birth date, ?)`.
 
