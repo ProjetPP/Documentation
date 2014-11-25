@@ -32,12 +32,12 @@ A *triple*, as in RDF, is a structure composed of three elements:
 * the *predicate*, that denotes the relationship between the subject and the object
 * the *object*, what property of the subject the triple refers to
 
-*Triples* notation is `(subject, predicate, object)`, or equivalently `predicate(subject,object)`.
+*Triples* notation is `(subject, predicate, object)`.
 
 We use triple formalism with some operators:
 
 ##### *full triple*
-*Full triple* is a function of *list × list × list → bool* written `(la, lb, lc)` that returns `true`, if and only if, for all `a` ∈ `la`, `b` ∈ `lb` and `c` ∈ `lc`, `(a,b,c)` is true.
+*Full triple* is a function of *list × list × list → bool* written `(la, lb, lc)` that returns `true`, if and only if, for all `a` ∈ `la`, `b` ∈ `lb` and `c` ∈ `lc`, `(a, b, c)` is true.
 
 ##### *triples with hole*
 The aim of *triples with hole* is to get information. They are functions of *list × list → list*. We define two of them:
