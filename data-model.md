@@ -177,6 +177,17 @@ Example: the serialization of the triple `(George Washington, birth date, ?)` is
 }
 ```
 
+### *union*, *intersection*, *and* and *or*
+There is only one parameter, *list* that is an array containing the operator parameters.
+
+Example: the serialization of the query `[George Washington] ∪ [Theodore Roosevelt]` is:
+```
+{
+	"type": "union",
+	"list": [{"type": "resource", "value": "George Washington"}, {"type": "resource", "value": "Theodore Roosevelt"}]
+}
+```
+
 ### *sentence*
 Has only one attribute, `value` that contains the sentence.
 
