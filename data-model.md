@@ -16,7 +16,7 @@ We describe here the different kind of possible *values*.
 A *resource* represents something in the universe. It may be a person denoted by its name, a date, a location, etc. Its notation is just a string like `Douglas Adams`, `Peru`, `true` or `2014`.
 
 #### *list*
-A *list* is an ordered collection of *resources*. Its notation is a comma separated list between brackets like `[Foo, Bar]`. We also assimilate the list with only one element with the element itself. So `[Foo]` may be also written `Foo`.
+A *list* is an ordered collection of *resources*. Its notation is a comma separated list between brackets like `[Foo, Bar]`. We also assimilate the list with only one element with the element itself. So `[Foo]` may be also written `Foo`. We impose lists to have no doublons.
 
 #### *bool*
 *bool* is the set of the two *resources* *true* and *false* representing the two booleans. They are written `true` and `false`.
