@@ -16,7 +16,7 @@ We describe here the different kind of possible *values*.
 A *resource* represents something in the universe. It may be a person denoted by its name, a date, a location, etc. Its notation is just a string like `Douglas Adams`, `Peru`, `true` or `2014`.
 
 #### *list*
-A *list* is an ordered collection of *resources*. Its notation is a comma separated list between brackets like `[Foo, Bar]`. We also assimilate the list with only one element with the element itself. So `[Foo]` may be also written `Foo`. We impose lists to have no duplicates.
+A *list* is an ordered collection of *resources* without duplicates. Its notation is a comma separated list between brackets like `[Foo, Bar]`. We also assimilate the list with only one element with the element itself. So `[Foo]` may be also written `Foo`.
 
 #### *bool*
 *bool* is the set of the two *resources* *true* and *false* representing the two booleans. They are written `true` and `false`.
@@ -48,7 +48,7 @@ The aim of *triples with hole* is to get information. They are functions of *lis
 Example: a triple generated from the question “What is the birth date of George Washington?” could be: `(George Washington, birth date, ?)`.
 
 #### *list* operators
-There are some operators that manipulate lists:
+There are some operators that manipulate lists. These operators do not preserve order.
 
 ##### *union*
 The *union* is an operator of *list⁺ → list* that returns the union of the lists. Its notation is the infix `∪` like `l1 ∪ l2 ∪ l3`.
