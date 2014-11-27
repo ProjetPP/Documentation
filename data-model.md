@@ -48,7 +48,7 @@ The aim of *triples with hole* is to get information. They are functions of *lis
 Example: a triple generated from the question “What is the birth date of George Washington?” could be: `(George Washington, birth date, ?)`.
 
 #### *list* operators
-There are some operators that manipulate lists. Result of these operators do not keep order.
+There are some operators that manipulate lists. These operators do not preserve order.
 
 ##### *union*
 The *union* is an operator of *list⁺ → list* that returns the union of the lists. Its notation is the infix `∪` like `l1 ∪ l2 ∪ l3`.
