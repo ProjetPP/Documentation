@@ -7,7 +7,7 @@ It is divided in two parts, the data model with mathematical-like notations and 
 This document tries to use the same denominations as the [RDF](http://www.w3.org/RDF/) specifications.
 
 ## Data model
-The PPP queries/questions are trees, where leafs are *values* and nodes are *operators*.
+The PPP queries/questions are trees, where leaves are *values* and nodes are *operators*.
 
 ### *values*
 We describe here the different kind of possible *values*.
