@@ -152,9 +152,9 @@ Additional attributes:
 * `calendar` (optional) the calendar of the date. Default: `gregorian`.
 
 ##### `math-latex`
-A mathematical formula. `value` is a string  which represents a mathematical formula written in LaTeX without the `$ $`. For instance:
+A mathematical formula. `value` is a human readable string representation of the formula and `latex` is the formula written in LaTeX without the `$ $`. For instance:
 ```
-{"type": "resource", "value": "\sqrt[\pi]{42}", "value-type":"math-latex"}
+{"type": "resource", "value": "1/2", "latex": "\frac{1}{2}", "value-type": "math-latex"}
 ```
 
 ### *list*
