@@ -157,6 +157,21 @@ A mathematical formula. `value` is a human readable string representation of the
 {"type": "resource", "value": "1/2", "latex": "\frac{1}{2}", "value-type": "math-latex"}
 ```
 
+##### `geo-json`
+A geographic data structure encoded using [GeoJSON](http://geojson.org/). `value` is a human readable string representation and `geojson` is the data structure encoded according to the [GeoJSON specification](http://geojson.org/geojson-spec.html). For instance:
+```
+{
+	"type": "resource",
+	"value": "+125.6, +10.1",
+	"geojson": {
+		"type": "Feature",
+		"geometry": {"type": "Point", "coordinates": [125.6, 10.1]},
+		"properties": {"name": "Dinagat Islands"}
+	},
+	"value-type": "geo-json"
+}
+```
+
 ### *list*
 It as only one attribute, `list` that is an array that stores the serialization of *list* elements.
 
