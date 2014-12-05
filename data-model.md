@@ -209,7 +209,7 @@ Example: the serialization of the triple `(George Washington, birth date, ?)` is
 }
 ```
 
-### *union*, *intersection*, *and*, *or*, *first* and *last*
+### *union*, *intersection*, *and* and *or*
 There is only one parameter, *list* that is an array containing the operator parameters.
 
 Example: the serialization of the query `[George Washington] ∪ [Theodore Roosevelt]` is:
@@ -222,15 +222,26 @@ Example: the serialization of the query `[George Washington] ∪ [Theodore Roose
 
 ### *sort*
 There are two parameters:
-* `list` the input *list*.
+* `list` the input *node*.
 * `predicate` the predicate with which the *list* is sorted.
 
 Example: the serialization of the query `sort([Theodore Roosevelt, George Washington], birth date)` is:
 ```
 {
 	"type": "sort",
-	"list": [{"type": "resource", "value": "Theodore Roosevelt"}, {"type": "resource", "value": "George Washington"}],
+	"list": {"type":"list", "list":[{"type": "resource", "value": "Theodore Roosevelt"}, {"type": "resource", "value": "George Washington"}]},
 	"predicate": {"type": "resource", "value": "birth date"}
+}
+```
+
+### *first* and *last*
+There is only one parameter `list` that is the input list.
+
+Example: the serialization of the query `first([George Washington, Theodore Roosevelt])` is:
+```
+{
+	"type": "first",
+	"list": {"type":"list", "list":[{"type": "resource", "value": "George Washington"}, {"type": "resource", "value": "Theodore Roosevelt"}]}
 }
 ```
 
