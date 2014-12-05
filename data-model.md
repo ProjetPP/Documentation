@@ -222,14 +222,14 @@ Example: the serialization of the query `[George Washington] ∪ [Theodore Roose
 
 ### *sort*
 There are two parameters:
-* `list` the input *list*.
+* `list` the input *node*.
 * `predicate` the predicate with which the *list* is sorted.
 
 Example: the serialization of the query `sort([Theodore Roosevelt, George Washington], birth date)` is:
 ```
 {
 	"type": "sort",
-	"list": [{"type": "resource", "value": "Theodore Roosevelt"}, {"type": "resource", "value": "George Washington"}],
+	"list": {"type":"list", "list":[{"type": "resource", "value": "Theodore Roosevelt"}, {"type": "resource", "value": "George Washington"}]},
 	"predicate": {"type": "resource", "value": "birth date"}
 }
 ```
