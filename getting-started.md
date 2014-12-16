@@ -1,4 +1,4 @@
-# Getting starting
+# Getting started
 
 This file is the entry point you are looking for if you are interested in the
 PPP but you do not know where to start, whether you want to deploy your own
