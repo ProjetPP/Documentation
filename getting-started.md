@@ -1,0 +1,46 @@
+# Getting starting
+
+This file is the entry point you are looking for if you are interested in the
+PPP but you do not know where to start, whether you want to deploy your own
+instance of the PPP or you want to write a plugin.
+
+
+## Understanding the PPP
+
+For the moment, the [final report](http://static.progval.net/public/ppp/report-draft.pdf)
+is the best place to start. As I am writing this, it is still a draft,
+but it should bet quite readable yet.
+
+Basically, the PPP is made of a core and modules, each running as an HTTP
+server.
+The core has a configuration file containing the URL of each module,
+allowing it to query them.
+
+
+## Installing the PPP
+
+This section is intended to people who want to deploy their own instance
+of the PPP. You might find it useful if you want to develop plugins too,
+in order to test the integration of your plugin.
+
+You can find the documentation in our [Deployment](https://github.com/ProjetPP/Deployment#readme)
+repository which contains all the script we use and the commands we run
+altogether.
+Hopefully, that's all you need to know. Otherwise, feel free to
+[contact us](http://projetpp.github.io/about.html).
+
+
+## Writing modules
+
+We wrote very useful libraries that allow you to focus on your code instead
+of administrative details (ie. interacting with the core).
+These libraries are available on PHP and Python.
+
+We recommand that you use Python, as we wrote more modules in Python (so you
+can use them as examples), and they are also simpler than the Wikidata module
+(which is the one written in PHP).
+
+You can find a script for creating the structure of a Python module
+in the [scripts repository](https://github.com/ProjetPP/Scripts/).
+It is named `create_python_module.py`; just download it, set the executable
+bit, and run it in a terminal.
