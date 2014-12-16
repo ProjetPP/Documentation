@@ -7,9 +7,8 @@ instance of the PPP or you want to write a plugin.
 
 ## Understanding the PPP
 
-For the moment, the [final report](http://static.progval.net/public/ppp/report-draft.pdf)
-is the best place to start. As I am writing this, it is still a draft,
-but it should bet quite readable yet.
+[Our website documentation](http://projetpp.github.io/documentation.html)
+is the best place to start. You can read here our reports and presentations.
 
 Basically, the PPP is made of a core and modules, each running as an HTTP
 server.
