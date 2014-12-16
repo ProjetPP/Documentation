@@ -39,8 +39,15 @@ These libraries are available on PHP and Python.
 We recommand that you use Python, as we wrote more modules in Python (so you
 can use them as examples), and they are also simpler than the Wikidata module
 (which is the one written in PHP).
+Consider reading the [spell checker](https://github.com/ProjetPP/PPP-Spell-Checker/blob/master/ppp_spell_checker/requesthandler.py)
+or the [CAS](https://github.com/ProjetPP/PPP-CAS/blob/master/ppp_cas/requesthandler.py),
+for instance
 
 You can find a script for creating the structure of a Python module
 in the [scripts repository](https://github.com/ProjetPP/Scripts/).
 It is named `create_python_module.py`; just download it, set the executable
 bit, and run it in a terminal.
+
+Finally, you need to understand the [data model](https://github.com/ProjetPP/Documentation/blob/master/data-model.md).
+Understanding how [communications work](https://github.com/ProjetPP/Documentation/blob/master/module-communication.md)
+may be useful too.
