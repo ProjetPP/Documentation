@@ -44,8 +44,7 @@ for instance
 
 You can find a script for creating the structure of a Python module
 in the [scripts repository](https://github.com/ProjetPP/Scripts/).
-It is named `create_python_module.py`; just download it, set the executable
-bit, and run it in a terminal.
+It is named `create_python_module.py`; just download it, run it in a terminal and follow the instructions.
 
 Finally, you need to understand the [data model](https://github.com/ProjetPP/Documentation/blob/master/data-model.md).
 Understanding how [communications work](https://github.com/ProjetPP/Documentation/blob/master/module-communication.md)
