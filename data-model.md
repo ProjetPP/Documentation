@@ -117,7 +117,7 @@ The `resource` serialization has three primary attributes:
 * `range` (optional) used in order to contains type informations as specified by the typing extension of the data model.
 * `description` (optional) used to show a large portion of text. (eg. the first paragraph of a Wikipedia article)
 * `image` (optional) an URL to an image to show next to the item.
-* `buttons` (option) a list of dicts (with keys `image`, `link`, and `title`) of clickable images that lead to a more detailed page about the item. (eg. for giving credits)
+* `buttons` (optional) a list of dicts (with keys `image`, `link`, and `title`) of clickable images that lead to a more detailed page about the item. (eg. for giving credits)
 
 There may be additional attributes depending on the `value-type`.
 
