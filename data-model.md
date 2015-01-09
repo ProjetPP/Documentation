@@ -172,6 +172,50 @@ A geographic data structure encoded using [GeoJSON](http://geojson.org/). `value
 }
 ```
 
+##### `resource-jsonld`
+A resource described in [JSON-LD](http://json-ld.org/). `value` is a human readable string representation and `graph` is the JSON-LD graph describing the resource.
+
+The JSON-LD graph should use as much as possible [schema.org vocabulary](http://schema.org/) vocabulary in order to increase module interoperability.
+The graph must be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-form), have as root a [node object](http://www.w3.org/TR/json-ld/#dfn-node-object) describing the resource and use `http://schema.org/` as context.
+
+You mustn't use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
+
+Note: use as *[schema:sameAs](http://schema.org/sameAs)* only URIs that identifies the same resource. For example, for Douglas Adams, you can state that he is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
+
+```
+{
+	"@context": "http://schema.org/",
+	"@type": "Person",
+	"name": {"@value": "Douglas Adams", "@language": "en"},
+	"description": [
+		{"@value": "English writer and humorist", "@language": "en"},
+		{"@value": "écrivain anglais de science-fiction", "@language": "fr"}
+	],
+	"sameAs": "http://www.wikidata.org/entity/Q42",
+	"image": {
+		"@type": "ImageObject",
+		"contentUrl": "http://upload.wikimedia.org/wikipedia/commons/c/c0/Douglas_adams_portrait_cropped.jpg",
+		"name": "Douglas adams portrait cropped.jpg"
+	}
+}
+```
+
+```
+{
+	"@context": "http://schema.org/",
+	"@type": "GeoCoordinates",
+	"latitude": "45.72",
+	"longitude": "4.82",
+	"@reverse": {
+		"geo": {
+			"@type": "Place",
+			"name": "Lyon",
+			"sameAs": "http://www.wikidata.org/entity/Q456"
+		}
+	}
+}
+```
+
 ### *list*
 It as only one attribute, `list` that is an array that stores the serialization of *list* elements.
 
