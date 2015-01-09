@@ -175,12 +175,12 @@ A geographic data structure encoded using [GeoJSON](http://geojson.org/). `value
 ##### `resource-jsonld`
 A resource described in [JSON-LD](http://json-ld.org/). `value` is a human readable string representation and `graph` is the JSON-LD graph describing the resource.
 
-The JSON-LD graph should use as much as possible [schema.org vocabulary](http://schema.org/) vocabulary in order to increase module interoperability.
+The JSON-LD graph should use as much as possible [schema.org vocabulary](http://schema.org/) vocabulary in order to increase interoperability between modules.
 The graph must be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-form), have as root a [node object](http://www.w3.org/TR/json-ld/#dfn-node-object) describing the resource and use `http://schema.org/` as context.
 
-You mustn't use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
+You must not use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
 
-Note: use as *[schema:sameAs](http://schema.org/sameAs)* only URIs that identifies the same resource. For example, for Douglas Adams, you can state that he is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
+Note: use as *[schema:sameAs](http://schema.org/sameAs)* only URIs that identify the same resource. For example, for Douglas Adams, you can state that he is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
 
 ```
 {
