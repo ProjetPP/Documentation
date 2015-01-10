@@ -180,7 +180,7 @@ The graph must be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-f
 
 You must not use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
 
-Note: use only URIs that identify the same resource as *[schema:sameAs](http://schema.org/sameAs)* value. For example, for Douglas Adams, you can state that he is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
+Note: use only URIs that identify the same resource as *[schema:sameAs](http://schema.org/sameAs)* value. For example, you can state that Douglas Adams is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
 
 ```
 {
