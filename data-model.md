@@ -175,7 +175,7 @@ A geographic data structure encoded using [GeoJSON](http://geojson.org/). `value
 ##### `resource-jsonld`
 A resource described in [JSON-LD](http://json-ld.org/). `value` is a human readable string representation and `graph` is the JSON-LD graph describing the resource.
 
-The JSON-LD graph should use as much as possible [schema.org vocabulary](http://schema.org/) vocabulary in order to increase interoperability between modules.
+The JSON-LD graph should use as much [schema.org vocabulary](http://schema.org/) vocabulary as possible in order to increase interoperability between modules.
 The graph must be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-form), have as root a [node object](http://www.w3.org/TR/json-ld/#dfn-node-object) describing the resource and use `http://schema.org/` as context.
 
 You must not use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
