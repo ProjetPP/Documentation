@@ -180,45 +180,55 @@ The graph must be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-f
 
 You must not use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
 
-Note: use only URIs that identify the same resource as *[schema:sameAs](http://schema.org/sameAs)* value. For example, you can state that Douglas Adams is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
+Note: You must use as value of *[schema:sameAs](http://schema.org/sameAs)* only URIs that identify the exact same resource as the current one. For example, you can state that Douglas Adams is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
 
 ```
 {
-    "@context": "http://schema.org/",
-    "@type": "Person",
-    "name": {"@value": "Douglas Adams", "@language": "en"},
-    "description": [
-        {"@value": "English writer and humorist", "@language": "en"},
-        {"@value": "écrivain anglais de science-fiction", "@language": "fr"}
-    ],
-    "sameAs": "http://www.wikidata.org/entity/Q42",
-    "image": {
-        "@type": "ImageObject",
-        "contentUrl": "//upload.wikimedia.org/wikipedia/commons/c/c0/Douglas_adams_portrait_cropped.jpg",
-        "name": "Douglas adams portrait cropped.jpg"
-    },
-    "potentialAction": {
-        "@type": "ViewAction",
-        "name": [{"@value": "View on Wikidata", "@language": "en"}, {"@value": "Voir sur Wikidata", "@language": "fr"}],
-        "image": "//upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg",
-        "target": "//www.wikidata.org/wiki/Q42"
+    "type": "resource",
+    "value-type": "resource-jsonld",
+    "value": "Douglas Adams",
+    "graph": {
+        "@context": "http://schema.org/",
+        "@type": "Person",
+        "name": {"@value": "Douglas Adams", "@language": "en"},
+        "description": [
+            {"@value": "English writer and humorist", "@language": "en"},
+            {"@value": "écrivain anglais de science-fiction", "@language": "fr"}
+        ],
+        "sameAs": "http://www.wikidata.org/entity/Q42",
+        "image": {
+            "@type": "ImageObject",
+            "contentUrl": "//upload.wikimedia.org/wikipedia/commons/c/c0/Douglas_adams_portrait_cropped.jpg",
+            "name": "Douglas adams portrait cropped.jpg"
+        },
+        "potentialAction": {
+            "@type": "ViewAction",
+            "name": [{"@value": "View on Wikidata", "@language": "en"}, {"@value": "Voir sur Wikidata", "@language": "fr"}],
+            "image": "//upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg",
+            "target": "//www.wikidata.org/wiki/Q42"
+        }
     }
 }
 ```
 
 ```
 {
-	"@context": "http://schema.org/",
-	"@type": "GeoCoordinates",
-	"latitude": "45.72",
-	"longitude": "4.82",
-	"@reverse": {
-		"geo": {
-			"@type": "Place",
-			"name": "Lyon",
-			"sameAs": "http://www.wikidata.org/entity/Q456"
-		}
-	}
+    "type": "resource",
+    "value-type": "resource-jsonld",
+    "value": "Douglas Adams",
+    "graph": {
+        "@context": "http://schema.org/",
+        "@type": "GeoCoordinates",
+        "latitude": "45.72",
+        "longitude": "4.82",
+        "@reverse": {
+            "geo": {
+                "@type": "Place",
+                "name": "Lyon",
+                "sameAs": "http://www.wikidata.org/entity/Q456"
+            }
+        }
+    }
 }
 ```
 
