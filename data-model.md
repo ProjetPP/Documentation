@@ -184,19 +184,25 @@ Note: use only URIs that identify the same resource as *[schema:sameAs](http://s
 
 ```
 {
-	"@context": "http://schema.org/",
-	"@type": "Person",
-	"name": {"@value": "Douglas Adams", "@language": "en"},
-	"description": [
-		{"@value": "English writer and humorist", "@language": "en"},
-		{"@value": "écrivain anglais de science-fiction", "@language": "fr"}
-	],
-	"sameAs": "http://www.wikidata.org/entity/Q42",
-	"image": {
-		"@type": "ImageObject",
-		"contentUrl": "http://upload.wikimedia.org/wikipedia/commons/c/c0/Douglas_adams_portrait_cropped.jpg",
-		"name": "Douglas adams portrait cropped.jpg"
-	}
+    "@context": "http://schema.org/",
+    "@type": "Person",
+    "name": {"@value": "Douglas Adams", "@language": "en"},
+    "description": [
+        {"@value": "English writer and humorist", "@language": "en"},
+        {"@value": "écrivain anglais de science-fiction", "@language": "fr"}
+    ],
+    "sameAs": "http://www.wikidata.org/entity/Q42",
+    "image": {
+        "@type": "ImageObject",
+        "contentUrl": "//upload.wikimedia.org/wikipedia/commons/c/c0/Douglas_adams_portrait_cropped.jpg",
+        "name": "Douglas adams portrait cropped.jpg"
+    },
+    "potentialAction": {
+        "@type": "ViewAction",
+        "name": [{"@value": "View on Wikidata", "@language": "en"}, {"@value": "Voir sur Wikidata", "@language": "fr"}],
+        "image": "//upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg",
+        "target": "//www.wikidata.org/wiki/Q42"
+    }
 }
 ```
 
