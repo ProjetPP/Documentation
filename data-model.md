@@ -173,7 +173,7 @@ Note: You must use as value of *[schema:sameAs](http://schema.org/sameAs)* only 
     "value-type": "resource-jsonld",
     "value": "Douglas Adams",
     "graph": {
-        "@context": "http://schema.org/",
+        "@context": "http://schema.org",
         "@type": "Person",
         "name": {"@value": "Douglas Adams", "@language": "en"},
         "description": [
@@ -202,7 +202,7 @@ Note: You must use as value of *[schema:sameAs](http://schema.org/sameAs)* only 
     "value-type": "resource-jsonld",
     "value": "Douglas Adams",
     "graph": {
-        "@context": "http://schema.org/",
+        "@context": "http://schema.org",
         "@type": "GeoCoordinates",
         "latitude": "45.72",
         "longitude": "4.82",
