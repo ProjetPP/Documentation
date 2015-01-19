@@ -200,7 +200,7 @@ Note: You must use as value of *[schema:sameAs](http://schema.org/sameAs)* only 
 {
     "type": "resource",
     "value-type": "resource-jsonld",
-    "value": "Douglas Adams",
+    "value": "Lyon",
     "graph": {
         "@context": "http://schema.org/",
         "@type": "GeoCoordinates",
