@@ -160,8 +160,9 @@ A mathematical formula. `value` is a human readable string representation of the
 ##### `resource-jsonld`
 A resource described in [JSON-LD](http://json-ld.org/). `value` is a human readable string representation and `graph` is the JSON-LD graph describing the resource.
 
-The JSON-LD graph should use [schema.org vocabulary](http://schema.org) as much as possible in order to increase interoperability between modules.
-The graph must be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-form), have as root a [node object](http://www.w3.org/TR/json-ld/#dfn-node-object) describing the resource and use `http://schema.org/` as context.
+The JSON-LD graph must have as root a [node object](http://www.w3.org/TR/json-ld/#dfn-node-object) describing the resource. It should use [schema.org vocabulary](http://schema.org) as much as possible in order to increase interoperability between modules and should not contain [blank node identifiers](http://www.w3.org/TR/json-ld/#identifying-blank-nodes).
+
+The graph may be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-form) in order to reduce the size of communications. The [context](http://www.w3.org/TR/json-ld/#the-context) `http://schema.org` should be used for that.
 
 You must not use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
 
