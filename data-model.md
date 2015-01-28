@@ -280,7 +280,7 @@ Example: the serialization of the query `sort([Theodore Roosevelt, George Washin
 }
 ```
 
-### *first* and *last*
+### *first*, *last* and *exists*
 There is only one parameter `list` that is the input list.
 
 Example: the serialization of the query `first([George Washington, Theodore Roosevelt])` is:
