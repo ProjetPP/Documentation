@@ -47,6 +47,12 @@ echo "y" | $BOWER
 
 ### Python libraries and tools
 
+You need to install some packages for this
+You can do so using `pip` (the Python package manager,
+installed with most Linux distributions, but you can
+[install it yourself](https://pip.pypa.io/en/latest/installing.html)
+otherwise):
+
 ```
 python3 -m pip --user ppp_datamodel ppp_libmodule ppp_cli ppp_core gunicorn
 ```
