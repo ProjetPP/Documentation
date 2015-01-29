@@ -37,7 +37,7 @@ A *triple*, as in RDF, is a structure composed of three elements:
 We use triple formalism with some operators:
 
 ##### *full triple*
-*Full triple* is a function of *list × list × list → bool* written `(la, lb, lc)` that returns `true`, if and only if, for all `a` ∈ `la`, there __exists__ `b` ∈ `lb` such that for all `c` ∈ `lc`, `(a, b, c)` is true.
+*Full triple* is a function of *list × list × list → bool* written `(la, lb, lc)` that returns `true`, if and only if, for all `a` ∈ `la` and `c` ∈ `lc`, there __exists__ `b` ∈ `lb` such that `(a, b, c)` is true.
 
 ##### *triples with hole*
 The aim of *triples with hole* is to get information. They are functions of *list × list → list*. We define two of them:
