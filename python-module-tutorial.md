@@ -20,3 +20,114 @@ python3 -m pip --user requests
 
 In this tutorial, we will write a basic module for fetching coordinates from
 the OpenStreetMap database.
+This plugin will recursively look for `(X, location, ?)` triples
+(ie. a node which should be replaced by the location of X) in requests,
+and use OSM to replace it.
+
+## Creating the module
+
+First, you should download and run the helper script for creating modules:
+
+```
+wget https://raw.githubusercontent.com/ProjetPP/Scripts/master/create_python_module.py
+python3 create_python_module.py
+```
+
+It will ask you a few questions. As an example, here is what I answered:
+
+```
+Please provide a nice name for your plugin. It should be a valid name for a folder name, so please use only alphanumerical characters and underscores.
+name> PPP-OSM
+Please provide a nice name for your plugin. It should be a valid name for a folder name, so please use only alphanumerical characters and underscores.
+name> OSM
+Please provide a package name for your plugin. It should be a valid name for a Python package, so please use only lowercase letters.
+name> ppp_osm
+Please provide a nice description for your plugin.
+description> PPP module for fetching data from OpenStreetMap.
+We need your name to put it to the license file. Just press Enter if you want to use the default attribution (“Projet Pensées Profondes”).
+author> Valentin Lorentz
+We also need your email address for the setuptools data.
+email> [my email address]
+
+Great! Your module has been created. Here are a few things you still have to do:
+* Setup Travis and Scrutinizer,
+* Create a git repository,
+* Set a better URL in setup.py,
+* and obviously write your plugin (start in ppp_osm/requesthandler.py).
+Have fun!
+```
+
+## Writing the basics
+
+We won't cover the three first bullet points here, as they are outside the
+scope of this tutorial.
+
+`cd` to the newly created directory (`cd OSM/` in my case), and open the
+file `ppp_osm/requesthandler.py`. It should contain something like this:
+
+```python
+"""Request handler of the module."""
+
+from ppp_libmodule.exceptions import ClientError
+
+class RequestHandler:
+    def __init__(self, request):
+        # TODO: Implement this
+        pass
+
+    def answer(self):
+        # TODO: Implement this
+        pass
+```
+
+Implement the constructor this way:
+
+```python
+def __init__(self, request):
+    self.request = request
+```
+
+The method `answer` should return a list of responses. In our case, we will
+only handle trees, so we can safely ignore sentences.
+Thus, here is a possible implementation of `answer`:
+
+```python
+def answer(self):
+    if isinstance(self.request.tree, Sentence):
+        return []
+    else:
+        tree = self.request.tree.traverse(predicate)
+        if tree == self.request.tree:
+            # If we have modified the tree, it is relevant to return it
+            return [answer(self.request, tree, {}, 'OSM')]
+        else:
+            # Otherwise, we have nothing interesting to say.
+            return []
+```
+
+As you may have noticed, we use two functions that we did not declare.
+
+Add this before `class requesthandler`:
+
+```python
+from ppp_libmodule import shortcuts
+
+def predicate(node):
+    pass
+```
+
+## Writing a traversal predicate
+
+TODO
+
+## Testing your module
+
+TODO
+
+## Automatically testing your module
+
+TODO
+
+## Conclusion
+
+TODO
