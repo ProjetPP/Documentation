@@ -110,21 +110,67 @@ As you may have noticed, we use two functions that we did not declare.
 Add this before `class requesthandler`:
 
 ```python
+from ppp_datamodel.nodes import Resource, Triple, Missing
 from ppp_libmodule import shortcuts
 
 def predicate(node):
-    pass
+    pass # TODO
 ```
+
+(We will use `Resource` and `Triple` later.)
 
 ## Writing a traversal predicate
 
-TODO
+The `traverse` method of node objects will call recursively the predicate
+to replace the node given as argument by the return value of the predicate.
+It starts from the leafs and iterates until reaching the root of the tree.
+
+As we are only going to replace `Triple` nodes with `location` as predicate
+and resources as subject and missing as object, we can start writing trivial
+cases of the predicate:
+
+```python
+def get_location_as_resource(place):
+    pass # TODO
+
+def predicate(node):
+    if not isinstance(node, Triple):
+        return node
+    elif node.predicate != Resource('location') or \
+            not isinstance(node.subject, Resource) or \
+            not isinstance(node.object, Missing):
+        return node
+    else:
+        # Here, node.subject is a resource, so node.subject.value exists
+        # and is a string.
+        return get_location_as_resource(node.subject.value)
+```
+
+Note: we only test the predicate against `location`. In theory, you should
+handle other predicates, depending on the language of the request, but this
+is outside the scope of this section.
 
 ## Testing your module
 
 TODO
 
 ## Automatically testing your module
+
+TODO
+
+## Using cache
+
+TODO
+
+## Using a configuration file
+
+TODO
+
+## Enriching a resource
+
+TODO
+
+## Handling different languages
 
 TODO
 
