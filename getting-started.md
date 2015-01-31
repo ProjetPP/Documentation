@@ -38,6 +38,9 @@ These libraries are available on PHP and Python.
 We recommand that you use Python, as we wrote more modules in Python (so you
 can use them as examples), and they are also simpler than the Wikidata module
 (which is the one written in PHP).
+
+We also wrote a tutorial for writing your own module.
+
 Consider reading the [spell checker](https://github.com/ProjetPP/PPP-Spell-Checker/blob/master/ppp_spell_checker/requesthandler.py)
 or the [CAS](https://github.com/ProjetPP/PPP-CAS/blob/master/ppp_cas/requesthandler.py),
 for instance
