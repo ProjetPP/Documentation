@@ -139,7 +139,7 @@ In any directory (say `/home/user/ppp_files/`), create a file named
 To run the core:
 
 ```
-PPP_CORE_CONFIG=/home/user/ppp_files/core_config.json gunicorn ppp_core:app
+PPP_CORE_CONFIG=/home/user/ppp_files/core_config.json gunicorn ppp_core:app -b 0.0.0.0:8080
 ```
 
 To use the WebUI, just open `PPP-WebUI/index.html` in your favorite
