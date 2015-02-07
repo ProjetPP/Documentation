@@ -130,7 +130,7 @@ and resources as subject and missing as object, we can start writing trivial
 cases of the predicate:
 
 ```python
-def get_location_as_resource(place):
+def get_locations_as_list(place):
     pass # TODO
 
 def predicate(node):
@@ -143,12 +143,49 @@ def predicate(node):
     else:
         # Here, node.subject is a resource, so node.subject.value exists
         # and is a string.
-        return get_location_as_resource(node.subject.value)
+        return get_locations_as_list(node.subject.value)
 ```
 
 Note: we only test the predicate against `location`. In theory, you should
 handle other predicates, depending on the language of the request, but this
 is outside the scope of this section.
+
+
+Here is a possible implementation for `get_locations_as_list`:
+
+```python
+import requests
+import urllib.parse
+
+from ppp_datamodel.nodes import List, JsonldResource
+
+def get_location_as_resource(data):
+    # Construct a JSON-LD graph with just the data we want and an identifier
+    graph = {'@context': 'http://schema.org',
+             '@type': 'GeoCoordinates',
+             '@id': 'http://www.openstreetmap.org/relation/%s' % data['osm_id'],
+             'latitude': data['lat'],
+             'longitude': data['lon'],
+             }
+    # Construct a resource with this graph, and an alternate text for
+    # applications that do not support graphs.
+    return JsonldResource('%s, %s' % (data['lat'], data['lon']),
+            graph=graph)
+
+def get_locations_as_list(place):
+    # Put HTTP escape codes in the place's name
+    place = urllib.parse.quote(place)
+    # Construct the URL
+    url = 'http://nominatim.openstreetmap.org/search/%s' % place
+    # Make the request and get the content
+    d = requests.get(url, params={'format': 'json'}).json()
+    # Construct a list with all the items
+    return List([get_location_as_resource(x) for x in d])
+```
+
+About the ID: this is an identifier in a format that may be recognized by
+other databases to avoid duplicates. We will see later how to do that in the
+section “Enriching a resource”.
 
 ## Testing your module
 
