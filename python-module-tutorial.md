@@ -37,8 +37,6 @@ It will ask you a few questions. As an example, here is what I answered:
 
 ```
 Please provide a nice name for your plugin. It should be a valid name for a folder name, so please use only alphanumerical characters and underscores.
-name> PPP-OSM
-Please provide a nice name for your plugin. It should be a valid name for a folder name, so please use only alphanumerical characters and underscores.
 name> OSM
 Please provide a package name for your plugin. It should be a valid name for a Python package, so please use only lowercase letters.
 name> ppp_osm
@@ -97,9 +95,9 @@ def answer(self):
         return []
     else:
         tree = self.request.tree.traverse(predicate)
-        if tree == self.request.tree:
+        if tree != self.request.tree:
             # If we have modified the tree, it is relevant to return it
-            return [answer(self.request, tree, {}, 'OSM')]
+            return [shortcuts.answer(self.request, tree, {}, 'OSM')]
         else:
             # Otherwise, we have nothing interesting to say.
             return []
@@ -110,14 +108,14 @@ As you may have noticed, we use two functions that we did not declare.
 Add this before `class requesthandler`:
 
 ```python
-from ppp_datamodel.nodes import Resource, Triple, Missing
+from ppp_datamodel.nodes import Resource, Triple, Missing, Sentence
 from ppp_libmodule import shortcuts
 
 def predicate(node):
     pass # TODO
 ```
 
-(We will use `Resource` and `Triple` later.)
+(We will use `Resource`, `Triple`, and `Sentence` later.)
 
 ## Writing a traversal predicate
 
