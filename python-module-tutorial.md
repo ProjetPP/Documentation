@@ -97,7 +97,7 @@ def answer(self):
         tree = self.request.tree.traverse(predicate)
         if tree != self.request.tree:
             # If we have modified the tree, it is relevant to return it
-            return [shortcuts.answer(self.request, tree, {}, 'OSM')]
+            return [shortcuts.build_answer(self.request, tree, {}, 'OSM')]
         else:
             # Otherwise, we have nothing interesting to say.
             return []
