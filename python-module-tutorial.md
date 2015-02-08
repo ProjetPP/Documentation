@@ -134,7 +134,7 @@ def get_locations_as_list(place):
 def predicate(node):
     if not isinstance(node, Triple):
         return node
-    elif node.predicate != Resource('location') or \
+    elif Resource('location') not in node.predicate_set or \
             not isinstance(node.subject, Resource) or \
             not isinstance(node.object, Missing):
         return node
