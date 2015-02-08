@@ -161,10 +161,16 @@ def get_location_as_resource(data):
     # Construct a JSON-LD graph with just the data we want and an identifier
     graph = {'@context': 'http://schema.org',
              '@type': 'GeoCoordinates',
-             '@id': 'http://www.openstreetmap.org/relation/%s' % data['osm_id'],
              'latitude': data['lat'],
              'longitude': data['lon'],
+             '@reverse': {
+                 'geo': {
+                    '@type': 'Place',
+                    '@id': 'http://www.openstreetmap.org/relation/%s' % data['osm_id'],
+                    'name': data['display_name'],
+                 }
              }
+            }
     # Construct a resource with this graph, and an alternate text for
     # applications that do not support graphs.
     return JsonldResource('%s, %s' % (data['lat'], data['lon']),
