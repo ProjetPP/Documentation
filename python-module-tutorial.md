@@ -193,7 +193,36 @@ section “Enriching a resource”.
 
 ## Testing your module
 
-TODO
+You can run your module with this command:
+
+```
+gunicorn ppp_osm:app -b 0.0.0.0:9000
+```
+
+And query it with this command:
+
+```
+progval@ganymede:~/etudes/ens/ppp/test_env$ python3 -m ppp_cli --api "http://localhost:9000/" --parse "(ENS de Lyon, location, ?)"
+
+Response (OSM):
+    List:
+    *
+        45.7295796, 4.8279795
+            @context: http://schema.org
+            @reverse:
+                geo:
+                    @id: http://www.openstreetmap.org/relation/2432962337
+                    @type: Place
+                    name: Amphithéâtre Charles Mérieux, Allée d'Italie, 7e, Lyon 7e Arrondissement, Lyon, Métropole de Lyon, Rhône, Rhône-Alpes, France métropolitaine, 69007, France
+            @type: GeoCoordinates
+            latitude: 45.7295796
+            longitude: 4.8279795
+```
+
+It works!
+
+But you can do even better and see it in a WebUI! For that, just follow the
+instructions given in the [development environment guide](https://github.com/ProjetPP/Documentation/blob/master/development-environment.md)
 
 ## Automatically testing your module
 
