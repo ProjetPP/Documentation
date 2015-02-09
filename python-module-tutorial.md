@@ -274,7 +274,7 @@ class TestDefinition(PPPTestCase(app)):
         self.assertEqual(len(r), 1, r)
         self.assertIsInstance(r[0].tree, List)
         self.assertGreater(len(r[0].tree.list), 0, r[0].tree)
-        self.assertIn('49.0616, 6.0784', r[0].tree.list[0].value)
+        self.assertEqual('49.0616, 6.0784', r[0].tree.list[0].value)
         self.assertIn('Jouy-aux-Arches',
                 r[0].tree.list[0].graph['@reverse']['geo']['name'])
 ```
