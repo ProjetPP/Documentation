@@ -226,7 +226,62 @@ instructions given in the [development environment guide](https://github.com/Pro
 
 ## Automatically testing your module
 
-TODO
+You don't want to run your tests manually everytime you make a
+change. Writing automatic tests will save you a lot of time and will
+improve the quality of your code, so we highly suggest that you
+write some.
+
+You can see the [Python documentation of the unittest module](https://docs.python.org/3/library/unittest.html)
+to learn how to write tests easily.
+
+We won't cover unit tests here, as you can just do it as usual.
+Instead, we will see how to write functional tests (ie. code that tests
+the global behavior of your module instead of just a function),
+because we wrote some tools that may be useful to you.
+
+Create a `.py` file in `tests/` with a name starting with `test_` and this
+content:
+
+```
+from ppp_datamodel import Missing, Triple, Resource, List
+from ppp_datamodel.communication import Request, TraceItem, Response
+from ppp_libmodule.tests import PPPTestCase
+from ppp_osm import app
+
+class TestLocation(PPPTestCase(app)):
+    pass
+```
+
+This is the skeleton how our test. `PPPTestCase(app)` is a small wrapper
+around `unittest.TestCase` that implements some useful functions.
+For instance, you can make a request. Example:
+
+```
+class TestDefinition(PPPTestCase(app)):
+    def testNoError(self):
+        # Prepare the request
+        q = Request('1', 'en', Triple(Resource('Jouy aux Arches'), Resource('location'), Missing()), {}, [])
+        # Make sure it returns a 200 HTTP code.
+        self.assertStatusInt(q, 200)
+
+    def testBasics(self):
+        # Prepare the request
+        q = Request('1', 'en', Triple(Resource('Jouy aux Arches'), Resource('location'), Missing()), {}, [])
+        # Send the request and receive a response
+        r = self.request(q)
+
+        # Usual stuff
+        self.assertEqual(len(r), 1, r)
+        self.assertIsInstance(r[0].tree, List)
+        self.assertGreater(len(r[0].tree.list), 0, r[0].tree)
+        self.assertIn('49.0616, 6.0784', r[0].tree.list[0].value)
+        self.assertIn('Jouy-aux-Arches',
+                r[0].tree.list[0].graph['@reverse']['geo']['name'])
+```
+
+There are other methods that you can call, but they are way less used
+than this two ones. See the [implementation of PPPTestCase](https://github.com/ProjetPP/PPP-libmodule-Python/blob/master/ppp_libmodule/tests.py)
+for a list of all available methods.
 
 ## Using a configuration file
 
