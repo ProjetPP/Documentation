@@ -228,11 +228,11 @@ instructions given in the [development environment guide](https://github.com/Pro
 
 TODO
 
-## Using cache
+## Using a configuration file
 
 TODO
 
-## Using a configuration file
+## Using cache
 
 TODO
 
