@@ -289,7 +289,66 @@ for a list of all available methods.
 
 ## Using a configuration file
 
-TODO
+The modules library not only provides a nice class for unit tests, it
+also provides you an easy way for making your module configurable.
+
+Let's say we want to make the URL of the search API configurable.
+
+### Modifications to the code
+
+Create a `config.py` file in your module's directory:
+
+```
+"""Configuration module."""
+import os
+import json
+import logging
+from ppp_libmodule.config import Config as BaseConfig
+from ppp_libmodule.exceptions import InvalidConfig
+
+class Config(BaseConfig):
+    config_path_variable = 'PPP_OSM_CONFIG'
+
+    def parse_config(self, data):
+        self.search_api = data['search_api']
+```
+
+Now, you may edit `requesthandler.py` and replace this:
+
+```
+    url = 'http://nominatim.openstreetmap.org/search/%s' % place
+```
+
+with this:
+
+```
+    url = '%s/%s' % (Config().search_api, place)
+```
+
+and make sure you add this line at the beginning of the file:
+
+```
+from .config import Config
+```
+
+### Running the module
+
+Now, to run your module, you have to create a configuration file
+(let's name it `config.json`) with this content:
+
+```
+{
+    "search_api": "http://nominatim.openstreetmap.org/search"
+}
+```
+
+and run your module with this command:
+
+```
+PPP_OSM_CONFIG=./config.json gunicorn ppp_osm:app -b 0.0.0.0:9000
+```
+
+Obviously, you can add as much configuration variables as you want
 
 ## Using cache
 
