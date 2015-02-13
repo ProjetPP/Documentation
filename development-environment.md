@@ -54,7 +54,7 @@ installed with most Linux distributions, but you can
 otherwise):
 
 ```
-python3 -m pip --user ppp_datamodel ppp_libmodule ppp_cli ppp_core gunicorn
+python3 -m pip --user ppp_datamodel ppp_libmodule ppp_cli ppp_core ppp_datamodel_notation_parser gunicorn
 ```
 
 (You can remove the `--user` flag and run the command as root if you
@@ -124,8 +124,8 @@ In any directory (say `/home/user/ppp_files/`), create a file named
             "url": "http://localhost:9000/"
         },
         {
-            "name": "platypus_core",
-            "url": "http://core.frontend.askplatyp.us/"
+            "name": "notation_parser",
+            "url": "python:ppp_datamodel_notation_parser.requesthandler:RequestHandler"
         }
     ],
     "recursion": {
