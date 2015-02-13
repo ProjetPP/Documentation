@@ -222,7 +222,11 @@ Response (OSM):
 It works!
 
 But you can do even better and see it in a WebUI! For that, just follow the
-instructions given in the [development environment guide](https://github.com/ProjetPP/Documentation/blob/master/development-environment.md)
+instructions given in the [development environment guide](https://github.com/ProjetPP/Documentation/blob/master/development-environment.md).
+
+Now you can type requests like this: `(ENS de Lyon, location, ?)`. Note
+that you cannot ask questions in natural language, unless you deployed
+a question parsing module.
 
 ## Automatically testing your module
 
