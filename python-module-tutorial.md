@@ -364,7 +364,7 @@ the results between queries. First, let's replace the line above
 with:
 
 ```
-    d = requests.get(url, params={'format': 'json'}).json()
+    d = query(url, {'format': 'json'})
 ```
 
 Then, add this codein `requesthandler`:
