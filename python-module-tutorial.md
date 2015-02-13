@@ -352,7 +352,67 @@ Obviously, you can add as much configuration variables as you want
 
 ## Using cache
 
-TODO
+Now, we want to make our module faster. For the moment, at each request,
+we send a request to OpenStreetMap with this line:
+
+```
+    d = requests.get(url, params={'format': 'json'}).json()
+```
+
+We want to write a more elaborate function that will remember
+the results between queries. First, let's replace the line above
+with:
+
+```
+    d = requests.get(url, params={'format': 'json'}).json()
+```
+
+Then, add this codein `requesthandler`:
+
+```
+import pickle
+import hashlib
+import memcache
+
+def connect_memcached():
+    mc = memcache.Client(['127.0.0.1'])
+    return mc
+
+def _query(url, params):
+    return requests.get(url, params=params).json()
+
+def query(url, params):
+    """Perform a query to all configured APIs and concatenates all
+    results into a single list.
+    Also handles caching."""
+    mc = connect_memcached()
+
+    # Construct a key suitable for memcached (ie. a string of less than
+    # 250 bytes)
+    key = (url, params)
+    key = 'ppp-osm-%s' + hashlib.md5(pickle.dumps(key)).hexdigest()
+
+    # Get the cached value, if any
+    r = mc.get(key)
+    if not r:
+        # If there is no cached value, query OSM and add the result to
+        # the cache.
+        r = _query(url, params)
+        mc.set(key, r, time=86400)
+    return r
+```
+
+This is a quite generic code for handling cache; the comments should
+make it easy to read.
+
+And your module is now much faster. Magic!
+
+Note that you have to install `python-memcache` and to run a memcached
+instance on your computer.
+It may be a good idea to make the timeout and the IP address of the
+cache server configurable. But you should already know how to make
+your module configurable (otherwise, see the section above), so
+this is left as an exercice to the reader.
 
 ## Enriching a resource
 
