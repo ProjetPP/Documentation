@@ -33,7 +33,7 @@ Hopefully, that's all you need to know. Otherwise, feel free to
 
 We wrote very useful libraries that allow you to focus on your code instead
 of administrative details (ie. interacting with the core).
-These libraries are available on PHP and Python.
+These libraries are available in PHP and Python.
 
 We recommand that you use Python, as we wrote more modules in Python (so you
 can use them as examples), and they are also simpler than the Wikidata module
