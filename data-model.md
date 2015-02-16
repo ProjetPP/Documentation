@@ -55,7 +55,7 @@ Example: a triple generated from the question “What is the birth date of Georg
 There are some operators that manipulate lists. These operators do not preserve order.
 
 ##### *inverse*
-The *inverse* is an operator of *property → property* such that `inverse(p)` is an *inverse property* of `p` i.e. a property such that for all `a`, `c` `(a, p, c)` ↔ `(c, inverse(p), a)`. We generalize this operator on *list → list* (it returns an inverse property for each property in the input list).
+The *inverse* is an operator of *property → property* such that `inverse(p)` is an *inverse property* of `p` i.e. a property such that for all `a`, `c`, `(a, p, c)` ↔ `(c, inverse(p), a)`. We generalize this operator on *list → list* (it returns an inverse property for each property in the input list).
 
 Example: We may have `has parent = inverse(has child)`
 
@@ -266,7 +266,7 @@ Example: the serialization of the triple `(George Washington, birth date, ?)` is
 }
 ```
 
-There is also a fouth attribute, `inverse-predicate` to encode triples like `(Barack Obama, residence ∪ inverse(inhabitant), ?)`:
+There is also a fourth attribute, `inverse-predicate` to encode triples like `(Barack Obama, residence ∪ inverse(inhabitant), ?)`:
 ```
 {
 	"type": "triple",
