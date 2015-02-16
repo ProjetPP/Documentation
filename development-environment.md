@@ -1,12 +1,14 @@
 # Setting up a development environment
 
-This guide will show you how to install a WebUI and a core on your
-computer and configure them to test your modules locally.
+This guide will show you how to install a WebUI and a basic PPP
+instance on your computer and configure them to test your modules
+locally.
 
 TL;DR version: just copy-past the code blocks at the right place.
 
 As you may want to connect your instance with other modules, we
-will connect it to the Platypus, the official demo of the PPP.
+will also tell you how to connect it to the Platypus, the official
+demo of the PPP.
 You may install the Platypus' modules on your computer instead,
 but it is not necessary and they are quite large.
 If you prefer the latter, we suggest that you use the
@@ -133,6 +135,19 @@ In any directory (say `/home/user/ppp_files/`), create a file named
     }
 }
 ```
+
+If you want to connect to the Platypus instead of just having a notation
+parser, replace the second object with:
+
+```
+         {
+            "name": "platypus_core",
+            "url": "http://core.frontend.askplatyp.us/"
+         }
+```
+
+(note: this is not recommanded if your plugin will be redundant
+with one already deployed)
 
 ## Running everything
 
