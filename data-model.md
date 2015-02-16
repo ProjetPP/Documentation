@@ -59,8 +59,7 @@ The *inverse* is an operator of *property → property* such that `inverse(p)` i
 
 Example: We may have `has parent = inverse(has child)`.
 
-*inverse* operator is useful when the same statement may be written in inversed manners in the database. For example, `a` is a part of `c` may be encoded as `(a, part of, c)` or `(c, member, a)`. With *inverse*, in order to retrive all parts of `c` we may use this single triple `(?, part of ∪ inverse(member), c) = (c, member ∪ inverse(part of), ?)`.
-
+*inverse* operator is useful when the same statement may be written in inversed manners in the database. For example, `a` is a part of `c` may be encoded as `(a, part of, c)` or `(c, member, a)`. With *inverse*, in order to retrieve all parts of `c` we may use this single triple `(?, part of ∪ inverse(member), c) = (c, member ∪ inverse(part of), ?)`.
 
 ##### *union*
 The *union* is an operator of *list⁺ → list* that returns the union of the lists. Its notation is the infix `∪` like `l1 ∪ l2 ∪ l3`.
@@ -277,6 +276,17 @@ There is also an optional fourth attribute, `inverse-predicate` to encode triple
 	"predicate": {"type": "resource", "value": "residence"},
 	"inverse-predicate": {"type": "resource", "value": "inhabitant"},
 	"object": {"type": "missing"}
+}
+```
+
+Please note that the previous triple is equivalent to:
+```
+{
+    "type": "triple",
+    "subject": {"type": "missing"},
+    "predicate": {"type": "resource", "value": "inhabitant"},
+    "inverse-predicate": {"type": "resource", "value": "residence"},
+    "object": {"type": "resource", "value": "Barack Obama"}
 }
 ```
 
