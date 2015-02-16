@@ -34,6 +34,10 @@ A *triple*, as in RDF, is a structure composed of three elements:
 
 *Triples* notation is `(subject, predicate, object)`.
 
+A triple `(a, b, c)` where `a`, `b` and `c` are *resources* is true if, and only if, the associated statement is true. For example `(Douglas Adams, instance of, human)` is true because *Douglas Adams is an instance of human* is a true statement but `(Douglas Adams, instance of, flower)` is false because Douglas Adams is definitively not a flower.
+
+We define also a subset of *resources* called *properties* such that `b` is a *property* if, an only if, `b` may be seen as a relation between two resources (i.e. may be used as a predicate of a meaningful triple). For example `birth date` is a *property* but `Douglas Adams` is not.
+
 We use triple formalism with some operators:
 
 ##### *full triple*
@@ -49,6 +53,11 @@ Example: a triple generated from the question “What is the birth date of Georg
 
 #### *list* operators
 There are some operators that manipulate lists. These operators do not preserve order.
+
+##### *inverse*
+The *inverse* is an operator of *property → property* such that `inverse(p)` is an *inverse property* of `p` i.e. a property such that for all `a`, `c` `(a, p, c)` ↔ `(c, inverse(p), a)`. We generalize this operator on *list → list* (it returns an inverse property for each property in the input list).
+
+Example: We may have `has parent = inverse(has child)`
 
 ##### *union*
 The *union* is an operator of *list⁺ → list* that returns the union of the lists. Its notation is the infix `∪` like `l1 ∪ l2 ∪ l3`.
@@ -253,6 +262,17 @@ Example: the serialization of the triple `(George Washington, birth date, ?)` is
 	"type": "triple",
 	"subject": {"type": "resource", "value": "George Washington"},
 	"predicate": {"type": "resource", "value": "birth date"},
+	"object": {"type": "missing"}
+}
+```
+
+There is also a fouth attribute, `inverse-predicate` to encode triples like `(Barack Obama, residence ∪ inverse(inhabitant), ?)`:
+```
+{
+	"type": "triple",
+	"subject": {"type": "resource", "value": "Barack Obama"},
+	"predicate": {"type": "resource", "value": "residence"},
+	"inverse-predicate": {"type": "resource", "value": "inhabitant"},
 	"object": {"type": "missing"}
 }
 ```
