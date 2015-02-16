@@ -57,7 +57,10 @@ There are some operators that manipulate lists. These operators do not preserve 
 ##### *inverse*
 The *inverse* is an operator of *property → property* such that `inverse(p)` is an *inverse property* of `p` i.e. a property such that for all `a`, `c`, `(a, p, c)` ↔ `(c, inverse(p), a)`. We generalize this operator on *list → list* (it returns an inverse property for each property in the input list).
 
-Example: We may have `has parent = inverse(has child)`
+Example: We may have `has parent = inverse(has child)`.
+
+*inverse* operator is useful when the same statement may be written in inversed manners in the database. For example, `a` is a part of `c` may be encoded as `(a, part of, c)` or `(c, member, a)`. With *inverse*, in order to retrive all parts of `c` we may use this single triple `(?, part of ∪ inverse(member), c) = (c, member ∪ inverse(part of), ?)`.
+
 
 ##### *union*
 The *union* is an operator of *list⁺ → list* that returns the union of the lists. Its notation is the infix `∪` like `l1 ∪ l2 ∪ l3`.
