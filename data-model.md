@@ -37,7 +37,7 @@ A *triple*, as in RDF, is a structure composed of three elements:
 We use triple formalism with some operators:
 
 ##### *full triple*
-*Full triple* is a function of *list × list × list → bool* written `(la, lb, lc)` that returns `true`, if and only if, for all `a` ∈ `la`, `b` ∈ `lb` and `c` ∈ `lc`, `(a, b, c)` is true.
+*Full triple* is a function of *list × list × list → bool* written `(la, lb, lc)` that returns `true`, if and only if, for all `a` ∈ `la` and `c` ∈ `lc`, there __exists__ `b` ∈ `lb` such that `(a, b, c)` is true.
 
 ##### *triples with hole*
 The aim of *triples with hole* is to get information. They are functions of *list × list → list*. We define two of them:
@@ -57,9 +57,11 @@ The *union* is an operator of *list⁺ → list* that returns the union of the l
 The *intersection* is an operator of *list⁺ → list* that returns the intersection of the lists. Its notation is the infix `∩`.
 
 ##### *sort*
-*Sort* is an operator of *list × resource → list*, written `sort(l, a)`, which sorts the *list* `l` with increasing order according to the predicate `a`.
+*Sort* is an operator of *list × resource → list*, written `sort(l, a)`, which sorts the *list* `l` with increasing order according to the predicate `a`. A `default` predicate can be used when the question does not contain information about it.
 
 Example: `sort([Theodore Roosevelt, George Washington], birth date)` returns `[George Washington, Theodore Roosevelt]`.
+
+Example of `default`: The question "Who is the first president of France" may be formalized as `sort((France, president, ?), default)`.
 
 ##### *first*
 *First* is an operator of *list → resource*, written `first(l)`, that returns the first element of the list.
@@ -84,15 +86,15 @@ The *or* is an operator of *bool⁺ → bool* that returns true if the disjoncti
 The *not* is an operator of *bool → bool* that returns the negation of the parameter. Its notation is the prefix `¬`.
 
 #### *exists*
-The *exists* is an operator of *list → bool* that returns *true* if, and only if, there exits a *resource* in the *list* e.g. the *list* is not empty. Its notation is the prefix `∃`.
+The *exists* is an operator of *list → bool* that returns *true* if, and only if, there exits a *resource* in the *list* (i.e. the *list* is not empty). Its notation is the prefix `∃`.
 
-Example: The question "Is there a pink bird" may be formalized as `∃ (?, instance of, bird) ∩ (?, color, pink)`.
+Example: The question "Is there a pink bird?" may be formalized as `∃ (?, instance of, bird) ∩ (?, color, pink)`.
 
 
 ## Extensions to the data model
 
 ### *sentence* *value*
-A *sentence* represents a full question encoded as a string. Its notation is a string between quotation marks like `"Who are you"`. It may be only the root of the question tree.
+A *sentence* represents a full question encoded as a string. Its notation is a string between quotation marks like `"Who are you?"`. It may be only the root of the question tree.
 
 ### Typing
 It is possible to add type information to *resource* and *missing* nodes.
@@ -104,7 +106,7 @@ Example: If we choose as range "musician" for the *resource* node `Michele Smith
 ## JSON serialization
 We provide a canonical representation of the data model in [JSON](http://www.json.org).
 
-Each node of the query tree is encoded as a JSON object with an attribute `type` that determine the kind of node and the other attributes.
+Each node of the query tree is encoded as a JSON object with an attribute `type` that determines the kind of node and the other attributes.
 
 The `type` attributes has the same value as the name of the node type in the data model.
 
@@ -114,7 +116,7 @@ Here are the serialization for the possible nodes:
 The `resource` serialization has three primary attributes:
 * `value` that is a string representation of the resource (for interoperability).
 * `value-type` (optional) that adds information about the type of the entity. Each module can use its own types or use basic types specified just after. Default: `string`.
-* `range` (optional) used in order to contains type informations as specified by the typing extension of the data model.
+* `range` (optional) used in order to contain type informations as specified by the typing extension of the data model.
 
 There may be additional attributes depending on the `value-type`.
 
@@ -157,23 +159,69 @@ A mathematical formula. `value` is a human readable string representation of the
 {"type": "resource", "value": "1/2", "latex": "\frac{1}{2}", "value-type": "math-latex"}
 ```
 
-##### `geo-json`
-A geographic data structure encoded using [GeoJSON](http://geojson.org/). `value` is a human readable string representation and `geojson` is the data structure encoded according to the [GeoJSON specification](http://geojson.org/geojson-spec.html). For instance:
+##### `resource-jsonld`
+A resource described in [JSON-LD](http://json-ld.org/). `value` is a human readable string representation and `graph` is the JSON-LD graph describing the resource.
+
+The JSON-LD graph must have as root a [node object](http://www.w3.org/TR/json-ld/#dfn-node-object) describing the resource. It should use [schema.org vocabulary](http://schema.org) as much as possible in order to increase interoperability between modules and should not contain [blank node identifiers](http://www.w3.org/TR/json-ld/#identifying-blank-nodes).
+
+The graph may be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-form) in order to reduce the size of communications. The [context](http://www.w3.org/TR/json-ld/#the-context) `http://schema.org` should be used for that.
+
+You must not use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
+
+Note: You must use as value of *[schema:sameAs](http://schema.org/sameAs)* only URIs that identify the exact same resource as the current one. For example, you can state that Douglas Adams is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
+
 ```
 {
-	"type": "resource",
-	"value": "+125.6, +10.1",
-	"geojson": {
-		"type": "Feature",
-		"geometry": {"type": "Point", "coordinates": [125.6, 10.1]},
-		"properties": {"name": "Dinagat Islands"}
-	},
-	"value-type": "geo-json"
+    "type": "resource",
+    "value-type": "resource-jsonld",
+    "value": "Douglas Adams",
+    "graph": {
+        "@context": "http://schema.org",
+        "@type": "Person",
+        "name": {"@value": "Douglas Adams", "@language": "en"},
+        "description": [
+            {"@value": "English writer and humorist", "@language": "en"},
+            {"@value": "écrivain anglais de science-fiction", "@language": "fr"}
+        ],
+        "sameAs": "http://www.wikidata.org/entity/Q42",
+        "image": {
+            "@type": "ImageObject",
+            "contentUrl": "//upload.wikimedia.org/wikipedia/commons/c/c0/Douglas_adams_portrait_cropped.jpg",
+            "name": "Douglas adams portrait cropped.jpg"
+        },
+        "potentialAction": {
+            "@type": "ViewAction",
+            "name": [{"@value": "View on Wikidata", "@language": "en"}, {"@value": "Voir sur Wikidata", "@language": "fr"}],
+            "image": "//upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg",
+            "target": "//www.wikidata.org/wiki/Q42"
+        }
+    }
+}
+```
+
+```
+{
+    "type": "resource",
+    "value-type": "resource-jsonld",
+    "value": "Lyon",
+    "graph": {
+        "@context": "http://schema.org",
+        "@type": "GeoCoordinates",
+        "latitude": "45.72",
+        "longitude": "4.82",
+        "@reverse": {
+            "geo": {
+                "@type": "Place",
+                "name": "Lyon",
+                "sameAs": "http://www.wikidata.org/entity/Q456"
+            }
+        }
+    }
 }
 ```
 
 ### *list*
-It as only one attribute, `list` that is an array that stores the serialization of *list* elements.
+It has only one attribute, `list` that is an array that stores the serialization of *list* elements.
 
 Example: The serialization of `[George Washington, Theodore Roosevelt]' is
 ```
@@ -210,7 +258,7 @@ Example: the serialization of the triple `(George Washington, birth date, ?)` is
 ```
 
 ### *union*, *intersection*, *and* and *or*
-There is only one parameter, *list* that is an array containing the operator parameters.
+There is only one parameter, *list*, that is an array containing the operator parameters.
 
 Example: the serialization of the query `[George Washington] ∪ [Theodore Roosevelt]` is:
 ```
@@ -223,7 +271,7 @@ Example: the serialization of the query `[George Washington] ∪ [Theodore Roose
 ### *sort*
 There are two parameters:
 * `list` the input *node*.
-* `predicate` the predicate with which the *list* is sorted.
+* `predicate` the predicate used to sort the *list*.
 
 Example: the serialization of the query `sort([Theodore Roosevelt, George Washington], birth date)` is:
 ```
@@ -234,7 +282,7 @@ Example: the serialization of the query `sort([Theodore Roosevelt, George Washin
 }
 ```
 
-### *first* and *last*
+### *first*, *last* and *exists*
 There is only one parameter `list` that is the input list.
 
 Example: the serialization of the query `first([George Washington, Theodore Roosevelt])` is:
@@ -246,7 +294,7 @@ Example: the serialization of the query `first([George Washington, Theodore Roos
 ```
 
 ### *sentence*
-Has only one attribute, `value` that contains the sentence.
+It has only one attribute, `value` that contains the sentence.
 
 Example: The serialization of `"Who is George Washington?"` is:
 ```

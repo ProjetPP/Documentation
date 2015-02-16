@@ -70,19 +70,11 @@ from ppp_libmodule.exceptions import ClientError
 
 class RequestHandler:
     def __init__(self, request):
-        # TODO: Implement this
-        pass
+        self.request = request
 
     def answer(self):
         # TODO: Implement this
         pass
-```
-
-Implement the constructor this way:
-
-```python
-def __init__(self, request):
-    self.request = request
 ```
 
 The method `answer` should return a list of responses. In our case, we will
@@ -416,7 +408,7 @@ this is left as an exercice to the reader.
 
 ## Enriching a resource
 
-TODO (not specificied yet)
+TODO (not specified yet)
 
 ## Measures
 
