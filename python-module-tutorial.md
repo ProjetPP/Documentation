@@ -416,12 +416,23 @@ this is left as an exercice to the reader.
 
 ## Enriching a resource
 
-TODO
+TODO (not specificied yet)
 
-## Handling different languages
+## Measures
 
-TODO
+TODO (not actually used yet)
 
 ## Conclusion
 
-TODO
+You should now be able to write your own module.
+
+Here are some advices for your future developments:
+
+* Always make sure you support all the features of the [data model](https://github.com/ProjetPP/Documentation/blob/master/data-model.md).
+  The `traverse` method of node objects should handle most of this work for
+  you, but it might come useful to know how the data model works.
+* Don't forget to support other languages. The language of the request
+  is available as `request.language` (an ISO 639-1 code).
+* And of course, follow [good coding styles](https://www.python.org/dev/peps/pep-0008/)
+
+Happy coding!
