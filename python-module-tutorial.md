@@ -289,8 +289,8 @@ for a list of all available methods.
 
 ## Using a configuration file
 
-The modules library not only provides a nice class for unit tests, it
-also provides you an easy way for making your module configurable.
+The modules library does not only provide a nice class for unit tests, it
+also provides you an easy way to make your module configurable.
 
 Let's say we want to make the URL of the search API configurable.
 
@@ -367,7 +367,7 @@ with:
     d = query(url, {'format': 'json'})
 ```
 
-Then, add this codein `requesthandler`:
+Then, add this code in `requesthandler`:
 
 ```
 import pickle
