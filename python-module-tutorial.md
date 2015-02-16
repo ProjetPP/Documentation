@@ -416,7 +416,7 @@ this is left as an exercice to the reader.
 
 ## Enriching a resource
 
-TODO (not specificied yet)
+TODO (not specified yet)
 
 ## Measures
 
