@@ -266,7 +266,7 @@ Example: the serialization of the triple `(George Washington, birth date, ?)` is
 }
 ```
 
-There is also a fourth attribute, `inverse-predicate` to encode triples like `(Barack Obama, residence ∪ inverse(inhabitant), ?)`:
+There is also an optional fourth attribute, `inverse-predicate` to encode triples like `(Barack Obama, residence ∪ inverse(inhabitant), ?)`:
 ```
 {
 	"type": "triple",
