@@ -43,9 +43,9 @@ name> ppp_osm
 Please provide a nice description for your plugin.
 description> PPP module for fetching data from OpenStreetMap.
 We need your name to put it to the license file. Just press Enter if you want to use the default attribution (“Projet Pensées Profondes”).
-author> Valentin Lorentz
+author> J. Doe
 We also need your email address for the setuptools data.
-email> [my email address]
+email> jdoe@askplatyp.us
 
 Great! Your module has been created. Here are a few things you still have to do:
 * Setup Travis and Scrutinizer,
