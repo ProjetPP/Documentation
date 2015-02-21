@@ -107,12 +107,6 @@ Example: The question "Is there a pink bird?" may be formalized as `∃ (?, inst
 ### *sentence* *value*
 A *sentence* represents a full question encoded as a string. Its notation is a string between quotation marks like `"Who are you?"`. It may be only the root of the question tree.
 
-### Typing
-It is possible to add type information to *resource* and *missing* nodes.
-
-Example: If we choose as range "time" to the *missing* node `?` in the triple `(George Washington, birth, ?)` this *triple with hole* can only return time points.
-
-Example: If we choose as range "musician" for the *resource* node `Michele Smith` we state that this *resource* is the musician Michele Smith and not the author that has the same name.
 
 ## JSON serialization
 We provide a canonical representation of the data model in [JSON](http://www.json.org).
