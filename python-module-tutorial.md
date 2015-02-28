@@ -253,7 +253,7 @@ around `unittest.TestCase` that implements some useful functions.
 For instance, you can make a request. Example:
 
 ```
-class TestDefinition(PPPTestCase(app)):
+class TestLocation(PPPTestCase(app)):
     def testNoError(self):
         # Prepare the request
         q = Request('1', 'en', Triple(Resource('Jouy aux Arches'), Resource('location'), Missing()), {}, [])
@@ -341,6 +341,28 @@ PPP_OSM_CONFIG=./config.json gunicorn ppp_osm:app -b 0.0.0.0:9000
 ```
 
 Obviously, you can add as much configuration variables as you want
+
+### Fixing the tests
+
+You may notice that now the tests don't run anymore, because your
+module requires configuration.
+Fortunately, you can make your tests provide configuration to
+your module!
+
+Just replace
+
+```
+class TestLocation(PPPTestCase(app)):
+```
+
+with:
+
+```
+class TestLocation(PPPTestCase(app)):
+    config_var = 'PPP_OSM_CONFIG'
+    config = '{"search_api": "http://nominatim.openstreetmap.org/search"}'
+```
+
 
 ## Using cache
 
