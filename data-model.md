@@ -75,11 +75,11 @@ Example: `sort([Theodore Roosevelt, George Washington], birth date)` returns `[G
 Example of `default`: The question "Who is the first president of France" may be formalized as `sort((France, president, ?), default)`.
 
 ##### *nth*
-*nth* is an operator of *integer × list → resource*, written `nth(i, l)`, that returns the *i*th element of the list *l* (the first element of the list is at position 1). If *i < 0* then it returns the *i*th element from the end (*nth(-1, l)* returns the last element of the list).
+*nth* is an operator of *integer × list → resource*, written `nth(i, l)`, that returns the *i*th element of the list *l* (the first element of the list is at position 0). If *i < 0* then it returns the *i*th element from the end (*nth(-1, l)* returns the last element of the list).
 
-Example: `nth(1, [George Washington, Theodore Roosevelt])` returns `George Washington` and `nth(-1, [George Washington, Theodore Roosevelt])` returns `Theodore Roosevelt`.
+Example: `nth(0, [George Washington, Theodore Roosevelt])` returns `George Washington` and `nth(-1, [George Washington, Theodore Roosevelt])` returns `Theodore Roosevelt`.
 
-We define also the deprecated aliases *first(l) = nth(l, 1)* and *last(l) = nth(l, -1)*
+We define also the deprecated aliases *first(l) = nth(l, 0)* and *last(l) = nth(l, -1)*
 
 #### *boolean* operators
 There are some operators that manipulate *bool*:
