@@ -74,15 +74,12 @@ Example: `sort([Theodore Roosevelt, George Washington], birth date)` returns `[G
 
 Example of `default`: The question "Who is the first president of France" may be formalized as `sort((France, president, ?), default)`.
 
-##### *first*
-*First* is an operator of *list → resource*, written `first(l)`, that returns the first element of the list.
+##### *nth*
+*nth* is an operator of *integer × list → resource*, written `nth(i, l)`, that returns the *i*th element of the list *l* (the first element of the list is at position 1). If *i < 0* then it returns the *i*th element from the end (*nth(-1, l)* returns the last element of the list).
 
-Example: `first([George Washington, Theodore Roosevelt])` returns `George Washington`.
+Example: `nth(1, [George Washington, Theodore Roosevelt])` returns `George Washington` and `nth(-1, [George Washington, Theodore Roosevelt])` returns `Theodore Roosevelt`.
 
-##### *last*
-*Last* is an operator of *list → resource*, written `last(l)`, that returns the last element of the list.
-
-Example: `last([George Washington, Theodore Roosevelt])` returns `Theodore Roosevelt`.
+We define also the deprecated aliases *first(l) = nth(l, 1)* and *last(l) = nth(l, -1)*
 
 #### *boolean* operators
 There are some operators that manipulate *bool*:
@@ -312,6 +309,20 @@ Example: the serialization of the query `sort([Theodore Roosevelt, George Washin
 	"type": "sort",
 	"list": {"type":"list", "list":[{"type": "resource", "value": "Theodore Roosevelt"}, {"type": "resource", "value": "George Washington"}]},
 	"predicate": {"type": "resource", "value": "birth date"}
+}
+```
+
+### *nth*
+There are two parameters:
+* `list` that is the input node.
+* `position` that is the position of the requested element.
+
+Example: the serialization of the query `nth(2, [George Washington, Theodore Roosevelt])` is:
+```
+{
+	"type": "nth",
+	"position": 2,
+	"list": {"type":"list", "list":[{"type": "resource", "value": "George Washington"}, {"type": "resource", "value": "Theodore Roosevelt"}]}
 }
 ```
 
