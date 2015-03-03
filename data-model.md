@@ -161,6 +161,8 @@ A boolean. `value` should be in {"true", "false", "1", "0"}.
 ##### `time`
 A point in time. `value` should match [ISO 8601](http://www.iso.org/iso/fr/home/standards/iso8601.htm).
 
+Consider using instead `resource-jsonld` that is more powerful (see the third example).
+
 Additional attributes:
 * `calendar` (optional) the calendar of the date. Default: `gregorian`.
 
@@ -178,6 +180,8 @@ The JSON-LD graph must have as root a [node object](http://www.w3.org/TR/json-ld
 The graph may be [compacted](http://www.w3.org/TR/json-ld/#compacted-document-form) in order to reduce the size of communications. The [context](http://www.w3.org/TR/json-ld/#the-context) `http://schema.org` should be used for that.
 
 You must not use the [schema:url](http://schema.org/url) property but instead the [`@id` keyword](http://www.w3.org/TR/json-ld/#node-identifiers).
+
+In order to return literals like dates, you may use as root node of the JSON-LD tree a resource with as `@type` the type of your literal and as [rdf:value](http://www.w3.org/TR/rdf-schema/#ch_value) (IRI: `http://www.w3.org/1999/02/22-rdf-syntax-ns#value`) the literal itself.
 
 Note: You must use as value of *[schema:sameAs](http://schema.org/sameAs)* only URIs that identify the exact same resource as the current one. For example, you can state that Douglas Adams is *schema:sameAs* *http://wikidata.org/entity/Q42* but not *schema:sameAs* *http://en.wikipedia.org/wiki/Douglas_Adams*, because the later is the URI of an article about Douglas Adams but not an URI for Douglas Adams himself.
 
@@ -225,6 +229,29 @@ Note: You must use as value of *[schema:sameAs](http://schema.org/sameAs)* only 
                 "@type": "Place",
                 "name": "Lyon",
                 "sameAs": "http://www.wikidata.org/entity/Q456"
+            }
+        }
+    }
+}
+```
+
+```
+{
+    "type": "resource",
+    "value-type": "resource-jsonld",
+    "value": "December 23, 1790",
+    "graph": {
+        "@context": "http://schema.org",
+        "@type": "Date",
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#value": {
+            "@value": "1790-12-23",
+            "@type": "Date"
+        },
+        "@reverse": {
+            "birthDate": {
+                "@type": "Person",
+                "name": "Jean-François Champollion",
+                "sameAs": "http://www.wikidata.org/entity/Q260"
             }
         }
     }
