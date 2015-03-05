@@ -79,7 +79,7 @@ Example of `default`: The question "Who is the first president of France" may be
 
 Example: `nth(0, [George Washington, Theodore Roosevelt])` returns `George Washington` and `nth(-1, [George Washington, Theodore Roosevelt])` returns `Theodore Roosevelt`.
 
-We define also the deprecated aliases *first(l) = nth(l, 0)* and *last(l) = nth(l, -1)*
+We define also the deprecated aliases *first(l) = nth(0, l)* and *last(l) = nth(-1, l)*
 
 #### *boolean* operators
 There are some operators that manipulate *bool*:
