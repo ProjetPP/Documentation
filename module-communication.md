@@ -31,8 +31,10 @@ an iteration limit).
 
 ```
 {"module": "<name of the module>", "tree": {<answer tree>},
- "measures": {"relevance": <relevance of the answer>,
-              "accuracy": <fiability of the answer>}}
+    "measures": {"relevance": <relevance of the answer>,
+              "accuracy": <fiability of the answer>},
+    "time": <total time taken by the module to answer, in seconds>
+}
 ```
 
 ## Backend
