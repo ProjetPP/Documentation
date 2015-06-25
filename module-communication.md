@@ -17,22 +17,46 @@ an iteration limit).
 
 ### Measures
 
-* accuracy is a self-rating of how much the module may have correctly
+* `accuracy` is a self-rating of how much the module may have correctly
   understood (ie. not misinterpreted) the request/question.
   A float from 0 to 1.
-* relevance is a self-rating of how much the tree has been improved
+* `relevance` is a self-rating of how much the tree has been improved
   (ie. made its way from a question to an useful answer).
   A positive float (not necessarily greater that 1; another module
   might use it to provide a much better answer).
-* measures an object, whose attributes are `accuracy` and `relevance`,
-  with their appropriate key.
+* `measures` is an object, whose attributes are `accuracy` and `relevance`,
+  with their appropriate values.
+
+### Time
+
+* `cpu` is the [CPU time](https://en.wikipedia.org/wiki/CPU_time) used by the module
+  to answer to the query, expressed in seconds.
+* `real` is the [real time](https://en.wikipedia.org/wiki/Elapsed_real_time) used
+  by the module to answer to the query, expressed in seconds. Note that it excludes
+  the time used in communication with the core module.
+* `communication` is the time used in communication with the core module, expressed
+  in seconds.
+* time is an object, whose attributes are `cpu`, `real` and `communication`, with
+  their appropriate values.
+
+Note that on typical implementations, `cpu` and `real` will be filled by the called
+module, whereas `communication` will be filled by the core module.
 
 ### Format of a `trace` item
 
 ```
-{"module": "<name of the module>", "tree": {<answer tree>},
- "measures": {"relevance": <relevance of the answer>,
-              "accuracy": <fiability of the answer>}}
+{   "module": <name of the module>,
+    "tree": <answer tree>,
+    "measures": {
+        "relevance": <relevance of the answer>,
+        "accuracy": <fiability of the answer>
+    },
+    "time" : {
+        "cpu" : <cpu time>,
+        "real" : <real time>,
+        "communication" : <communication time>
+    }
+}
 ```
 
 ## Backend
