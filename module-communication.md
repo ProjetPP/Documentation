@@ -31,15 +31,18 @@ an iteration limit).
 
 * `cpu` is the [CPU time](https://en.wikipedia.org/wiki/CPU_time) used by the module
   to answer to the query, expressed in seconds.
-* `real` is the [real time](https://en.wikipedia.org/wiki/Elapsed_real_time) used
-  by the module to answer to the query, expressed in seconds. Note that it excludes
-  the time used in communication with the core module.
+* `start` is the start timestamp of the module's processing, in seconds from UNIX Epoch.
+  It may be a floating-point number.
+  It excludes the time used in communication with the core module.
+* `end` is the end timestamp of the module's processing, in seconds from UNIX Epoch.
+  It may be a floating-point number.
+  It excludes the time used in communication with the core module.
 * `communication` is the time used in communication with the core module, expressed
   in seconds.
-* time is an object, whose attributes are `cpu`, `real` and `communication`, with
-  their appropriate values.
+* time is an object, whose attributes are `cpu`, `start`, `end`, and
+  `communication`, with their appropriate values.
 
-Note that on typical implementations, `cpu` and `real` will be filled by the called
+Note that on typical implementations, `cpu`, `start`, and `end` will be filled by the called
 module, whereas `communication` will be filled by the core module.
 
 ### Format of a `trace` item
@@ -53,7 +56,8 @@ module, whereas `communication` will be filled by the core module.
     },
     "time" : {
         "cpu" : <cpu time>,
-        "real" : <real time>,
+        "start" : <start time>,
+        "end" : <end time>,
         "communication" : <communication time>
     }
 }
