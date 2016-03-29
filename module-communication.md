@@ -31,10 +31,10 @@ an iteration limit).
 
 * `cpu` is the [CPU time](https://en.wikipedia.org/wiki/CPU_time) used by the module
   to answer to the query, expressed in seconds.
-* `start` is the start timestamp of the module's processing
+* `start` is the start timestamp of the module's processing, in seconds from UNIX Epoch.
   It may be a floating-point number.
   It excludes the time used in communication with the core module.
-* `end` end timestamp of the module's processing, in seconds from UNIX Epoch.
+* `end` is the end timestamp of the module's processing, in seconds from UNIX Epoch.
   It may be a floating-point number.
   It excludes the time used in communication with the core module.
 * `communication` is the time used in communication with the core module, expressed
