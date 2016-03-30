@@ -27,7 +27,7 @@ an iteration limit).
 * `measures` is an object, whose attributes are `accuracy` and `relevance`,
   with their appropriate values.
 
-### Time
+### Times
 
 * `cpu` is the [CPU time](https://en.wikipedia.org/wiki/CPU_time) used by the module
   to answer to the query, expressed in seconds.
@@ -39,7 +39,7 @@ an iteration limit).
   It excludes the time used in communication with the core module.
 * `communication` is the time used in communication with the core module, expressed
   in seconds.
-* time is an object, whose attributes are `cpu`, `start`, `end`, and
+* `times` is an object, whose attributes are `cpu`, `start`, `end`, and
   `communication`, with their appropriate values.
 
 Note that on typical implementations, `cpu`, `start`, and `end` will be filled by the called
@@ -54,7 +54,7 @@ module, whereas `communication` will be filled by the core module.
         "relevance": <relevance of the answer>,
         "accuracy": <fiability of the answer>
     },
-    "time" : {
+    "times" : {
         "cpu" : <cpu time>,
         "start" : <start time>,
         "end" : <end time>,
