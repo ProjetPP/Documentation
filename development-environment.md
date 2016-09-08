@@ -142,7 +142,7 @@ parser, replace the second object with:
 ```
          {
             "name": "platypus_core",
-            "url": "http://core.frontend.askplatyp.us/"
+            "url": "https://core.frontend.askplatyp.us/"
          }
 ```
 
