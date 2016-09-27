@@ -83,6 +83,7 @@ and also the request object.
 A request object is a JSON object with the following attributes:
 
 * `language` (string), with an ISO 639-1 code as value
+* `response-language` (string), with an ISO 639-1 code as value. The language the responses should be formatted in. Optional, by default the value of `language`
 * `measures`, see vocabulary
 * `tree` (object): the sentence tree of the request
 * `id` (string, optional) a unique identifier used to track the request
